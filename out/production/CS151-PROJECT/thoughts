@@ -1,0 +1,3 @@
+1. reservation should have a room attached to it?
+2. hotel: addReservation(room r, reservation r), should be addRes(int roomNumber, res r)
+3. hote: delete a certain reservation? by a certain user, specific date?
