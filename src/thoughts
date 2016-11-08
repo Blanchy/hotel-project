@@ -1,9 +1,16 @@
 1. reservation should have a room attached to it?
-2. hotel: addReservation(room r, reservation r), should be addRes(int roomNumber, res r)
-3. hote: delete a certain reservation? by a certain user, specific date?asd
-asda
-sdasd
-asd
-asd
-asd
+2. hotel: addReservation(room r, reservation r), should be addRes(int roomNumber, res r) (DONE)
+3. hotel: delete a certain reservation? by a certain user, specific date? (resolved)
+4. hotel: deleted ArrayList<Reservation> allReservations, to deleteReservation(s), go to
+          room and delete that certain reservation by startDate
+5. hotel: added deleteAllReservations()
+
+5. room: added getAllReservations() returns arrayList reservation
+6. room: added deleteAllReservations()
+7. room: added isAvailable()
+
+NOTE: ADD JAVADOC
+
+
+
 

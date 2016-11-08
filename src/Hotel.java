@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -6,7 +10,6 @@ import java.util.ArrayList;
 public class Hotel {
 
     private Room[] rooms;
-    ArrayList<Reservation> allReservations;
 
     public Hotel()
     {
@@ -21,29 +24,51 @@ public class Hotel {
 
     public void addReservation(int roomNumber, Reservation r)
     {
-        allReservations.add(r);
-        rooms[roomNumber-1].addReservation(r); //ex: addReservation(2, r) should reserve the 2nd room (index 1)
+        //ex: addReservation(2, r) should reserve the 2nd room (index 1)
+        rooms[roomNumber-1].addReservation(r);
     }
 
     public void deleteAllReservations()
     {
-        allReservations.clear();
+        for (int i = 0; i < rooms.length; i++)
+        {
+            rooms[i].deleteAllReservation();
+        }
     }
 
     public void deleteReservation(int roomIndex, String reservationStartDate)
     {
-
+        //no specification of userID, how to delete?
     }
 
     public void loadReservations()
     {
-
+        //not done
     }
 
-    //save to a file
+
     public void saveReservations()
     {
-        //asdoaijdaoisdjaosdiajdsoij
+        try {
+            PrintWriter writer = new PrintWriter("reservations.txt");
+            for (Room r : rooms) {
+                writer.println(r.toString());
+            }
+        }
+        catch (IOException IOE)
+        {
+            System.out.println("IOException!");
+        }
+    }
+
+    public String toString()
+    {
+        String rtn = "HOTEL: \n";
+        for (Room r : rooms)
+        {
+            rtn += r.toString();
+        }
+        return rtn;
     }
 
 
@@ -66,4 +91,6 @@ public class Hotel {
             System.out.println();
         }
     }
+
+
 }

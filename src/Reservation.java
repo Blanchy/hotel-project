@@ -75,7 +75,6 @@ public class Reservation {
         Date endDate = cal2.getTime();
 
         return !(checkDate.before(startDate) || checkDate.after(endDate));
-
     }
 
     /**
