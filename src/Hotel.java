@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
- * Created by JonWong on 11/5/16.
+ * Created by JonWong on 11/5/16. this is a comment
  */
 public class Hotel {
 

@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="701b22a8-6f99-45e0-b286-db176588b9fb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Hotel.java" afterPath="$PROJECT_DIR$/src/Hotel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Reservation.java" afterPath="$PROJECT_DIR$/src/Reservation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Room.java" afterPath="$PROJECT_DIR$/src/Room.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/thoughts" afterPath="$PROJECT_DIR$/src/thoughts" />
     </list>
     <ignored path="CS151-PROJECT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +28,8 @@
           <file leaf-file-name="Hotel.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Hotel.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="930">
-                  <caret line="65" column="33" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
+                <state relative-caret-position="60">
+                  <caret line="7" column="51" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -580,8 +576,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hotel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="65" column="33" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
+        <state relative-caret-position="60">
+          <caret line="7" column="51" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
