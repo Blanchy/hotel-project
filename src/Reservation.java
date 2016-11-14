@@ -106,4 +106,4 @@ public class Reservation {
         ". Length of stay: " + getNumberOfDays(startDate, endDate);
         return rtn; 
     }
-} //test comment
+} //test comment 
