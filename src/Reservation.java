@@ -104,6 +104,6 @@ public class Reservation {
     {
         String rtn = userID + "has reserved from " + startDate + " to " + endDate +
         ". Length of stay: " + getNumberOfDays(startDate, endDate);
-        return rtn;
+        return rtn; 
     }
-}
+} //test comment
