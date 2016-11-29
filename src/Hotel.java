@@ -39,6 +39,18 @@ public class Hotel {
     public void deleteReservation(int roomIndex, String reservationStartDate)
     {
         //no specification of userID, how to delete?
+    	// because a room can only have one reservation on a given date, we dont have to specify
+    	// which user made it
+    	boolean roomFound = false;
+    	int i = 0;
+    	while (!roomFound) {
+    		if (rooms[i] == roomIndex) {
+    			
+    			rooms[i].deleteReservation(reservationStartDate);
+    			roomFound = true;
+    		}
+    		i++;
+    	}
     }
 
     public void loadReservations()

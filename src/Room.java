@@ -53,7 +53,7 @@ public class Room {
         reservations.add(r);
     }
 
-    public void deleteReservation(String userID, String startDate)
+    public void deleteReservation(/*String userID,*/ String startDate) //maybe delete userID? because multiple users can't have the same start date
     {
         for (int i = 0; i < reservations.size(); i++)
         {
