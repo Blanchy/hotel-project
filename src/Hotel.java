@@ -17,7 +17,7 @@ public class Hotel {
         for (int i = 0; i < 20; i++)
         {
             int price = 200; //first 10 are luxury, second 10 are economy
-            if (i >= 10) { price = 100; }
+            if (i >= 10) { price = 80; }
             rooms[i] = new Room(i, price);
         }
     }
