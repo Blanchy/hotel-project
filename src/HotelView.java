@@ -14,8 +14,6 @@ import javax.swing.*;
  * 
  * The action listeners call for the controller to change the HotelView's panel
  * to a different Screen.
- * 
- * HotelView does not compile because the Screens are making calls to the controller.
  */
 
 public class HotelView {
@@ -23,13 +21,17 @@ public class HotelView {
 	JFrame frame;
 	JPanel currentPan;
 
+	private int	WIDTH = 500;
+	private int HEIGHT = 500;
+	
 	public HotelView() {
 
 		frame = new JFrame();
-		frame.setLayout(new FlowLayout());
+		frame.setLayout(new BorderLayout());
+		frame.setPreferredSize(new Dimension(500,500));
 
 		currentPan = new ScreenInitial(this);
-		frame.add(currentPan);
+		frame.add(currentPan, BorderLayout.CENTER);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();

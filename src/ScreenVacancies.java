@@ -17,17 +17,54 @@ public class ScreenVacancies extends JPanel {
 		JPanel vacancies = new JPanel();
 		
 		vacancies.setLayout(new FlowLayout());
-		JTextArea rooms = new JTextArea("Room vacancies will go here");
+		JTextArea rooms = new JTextArea();
+		rooms.setText(printRooms());
+		/* add a change listener for when the preference of rooms gets changed? set it to call
+		 * printrooms
+		 */
+		
 		vacancies.add(rooms);
 		
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new BoxLayout(buttons, BoxLayout.Y_AXIS));
 		JLabel enterPrompt = new JLabel("Enter room number:");
 		JTextField enterRoom = new JTextField();
-		JButton reserve = new JButton("Confirm Reservation");
+		JButton confirm = new JButton("Confirm");
+		JButton	moreReservations = new JButton("More reservations?");
+		JButton done = new JButton("Done");
 		JButton back = new JButton("Go Back");
 		
-		reserve.addActionListener(new ActionListener() {
+		confirm.addActionListener(new ActionListener() {
+
+			@Override
+
+			public void actionPerformed(ActionEvent e) {
+
+				//add reservation
+				//update vacancies to get new vacant rooms
+
+			}
+
+		});
+		
+		moreReservations.addActionListener(new ActionListener() {
+
+			@Override
+
+			public void actionPerformed(ActionEvent e) {
+
+				JFrame popup = new JFrame();
+				popup.add(new ScreenMakeRes());
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.pack();
+				frame.setVisible(true);
+				/* vacancies will be updated when this window is completed */
+
+			}
+
+		});
+		
+		done.addActionListener(new ActionListener() {
 
 			@Override
 
@@ -53,11 +90,20 @@ public class ScreenVacancies extends JPanel {
 		
 		buttons.add(enterPrompt);
 		buttons.add(enterRoom);
-		buttons.add(reserve);
+		buttons.add(confirm);
+		buttons.add(moreReservations)
 		buttons.add(back);
+		buttons.add(done);
 		
 		add(vacancies);
 		add(buttons);
 	}
 
+	/**
+	 * Gets vacant rooms that match the price and reservation dates
+	 * @return String of vacant rooms 
+	 */
+	public String printRooms() {
+		return "look at all these rooms";
+	}
 }

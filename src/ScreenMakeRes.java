@@ -20,16 +20,38 @@ public class ScreenMakeRes extends JPanel {
 		JLabel checkOut = new JLabel("Check out (MM/DD/YYYY):");
 		JTextField checkOutDate = new JTextField();
 		
-		JButton seeRooms = new JButton("See Rooms");
+		JPanel buttonPan = new JPanel();
+		buttonPan.setLayout(new FlowLayout());
 		
-		seeRooms.addActionListener(new ActionListener() {
+		JButton seeLuxuryRooms = new JButton("See Luxury Rooms");	
+		JButton seeEconomicRooms = new JButton("See Economic Rooms");
+		
+		seeLuxuryRooms.addActionListener(new ActionListener() {
 
 			@Override
 
 			public void actionPerformed(ActionEvent e) {
+				this.dispose();
+				ScreenVacancies sv = new ScreenVacancies(view);
+				// set up sv so that it gets the appropriate rooms
+				// send textfield and jbutton input somewhere
+				// check validity of input
+				view.changeScreen(sv);
+			}
 
-				view.changeScreen(new ScreenVacancies(view));
+		});
+		
+		seeEconomicRooms.addActionListener(new ActionListener() {
 
+			@Override
+
+			public void actionPerformed(ActionEvent e) {
+				this.dispose();
+				ScreenVacancies sv = new ScreenVacancies(view);
+				// set up sv so that it gets the appropriate rooms
+				// send textfield and jbutton input somewhere
+				// check validity of input
+				view.changeScreen(sv);
 			}
 
 		});
@@ -39,7 +61,10 @@ public class ScreenMakeRes extends JPanel {
 		add(checkInDate);
 		add(checkOut);
 		add(checkOutDate);
-		add(seeRooms);
+		
+		buttonPan.add(seeLuxuryRooms);
+		buttonPan.add(seeEconomicRooms);
+		add(buttonPan);
 	}
 
 }
