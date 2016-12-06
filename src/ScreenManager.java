@@ -24,7 +24,16 @@ public class ScreenManager extends JPanel {
 				view.changeScreen(new ScreenManagerView(view));			
 			}
 		});
-		// quit.addActionListener
+		
+		quit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				System.exit(0);
+			}
+		});
+		
+		//ADD LISTENER FOR LOAD
+		
+		// ADD LISTENER FOR SAVE
 		
 		add(manageOption);
 		add(load);

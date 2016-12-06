@@ -27,6 +27,7 @@ public class ScreenReservations extends JPanel {
 			}
 
 		});
+		
 		// delete.addActionListener
 		
 		add(reservations);
