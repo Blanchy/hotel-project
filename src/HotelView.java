@@ -20,11 +20,14 @@ public class HotelView {
 
 	JFrame frame;
 	JPanel currentPan;
+	
+	Hotel hotel;
 
 	private int	WIDTH = 500;
 	private int HEIGHT = 500;
 	
-	public HotelView() {
+	public HotelView(Hotel h) {
+		hotel = h;
 
 		frame = new JFrame();
 		frame.setLayout(new BorderLayout());
@@ -43,10 +46,32 @@ public class HotelView {
 	}
 
 	public void changeScreen(JPanel jp) {
+		
 		frame.setContentPane(jp);
 		frame.invalidate();
 		frame.validate();
 		frame.repaint();
+	}
+	
+	/**
+	 * formats data from model to suit the upcoming screen
+	 * @param jp upcoming JPanel
+	 */
+	public void getData(JPanel jp) {
+		if (jp instanceof ScreenVacancies) {
+			/* this retrieves data from user session */
+		}
+		else if (jp instanceof ScreenReciept) {
+			/* this retrieves data from user session */
+		}
+		else if (jp instanceof ScreenManagerView) {
+			/* info from Hotel */
+		}
+		else if (jp instanceof ScreenReservations) {
+			/* info from user session (this is looking at a particular
+			 * guest's reservations)
+			 */
+		}
 	}
 
 }
