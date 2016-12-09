@@ -80,7 +80,7 @@ public class GuestSession implements User {
 		ArrayList<Room> available = new ArrayList<Room>();
 		for (Room r : rooms) {
 			/*
-			 * first check if the room type/price matches, then
+			 * first check if the price matches, then
 			 * check if room r is available between start and end dates
 			 */
 		}
