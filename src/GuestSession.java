@@ -37,6 +37,19 @@ public class GuestSession implements User {
 		
 		newRes = new ArrayList<Reservation>();
 		
+		allRes = new ArrayList<Reservation>();
+		
+		Room[] allRooms = hotel.getRooms();
+		for (Room r : allRooms) {
+			ArrayList<Reservation> allReservations = r.getAllReservations();
+			for (Reservation rsv : allReservations) {
+				if (rsv.getUserID().equals(this.id)) {
+					allRes.add(rsv);
+				}
+			}
+		}
+		
+		
 		startDate = "";
 		endDate = "";
 		
@@ -48,9 +61,10 @@ public class GuestSession implements User {
 	 * but does not add it to the hotel itself yet.
 	 * then notifies view.
 	 * 
-	 * @param r Reservation to be added
+	 * @param roomNum index of array of rooms
 	 */
-	public void addReservation(Reservation r) {
+	public void addReservation(int roomNum) {
+		Reservation r =  new Reservation(roomNum, id, startDate, endDate);
 		newRes.add(r);
 		allRes.add(r);
 		notifyView();
@@ -70,7 +84,7 @@ public class GuestSession implements User {
 			 * check if room r is available between start and end dates
 			 */
 		}
-		return null;
+		return available;
 	}
 
 	/**
@@ -110,8 +124,13 @@ public class GuestSession implements User {
 	public String getEnd() {return endDate;}
 	
 	/**
-	 * retrieves the reservations made during a particular transaction and clears
-	 * the ArrayList of new reservations. used in Simple Receipt.
+	 * 
+	 */
+	public String getID() { return id;}
+	
+	/**
+	 * retrieves the reservations made during a particular transaction. 
+	 * used in Simple Receipt.
 	 * 
 	 * @return arraylist of new reservations
 	 */
@@ -125,6 +144,13 @@ public class GuestSession implements User {
 	 */
 	public ArrayList<Reservation> getAllReservations() {
 		return allRes;
+	}
+	
+	/**
+	 * clears newRes arraylist. called right before entering transaction screen.
+	 */
+	public void eraseNewReservations() {
+		newRes.clear();
 	}
 	
 	/**

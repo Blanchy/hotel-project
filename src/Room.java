@@ -16,6 +16,7 @@ public class Room {
     {
         this.number = number;
         this.price = price;
+        reservations = new ArrayList<Reservation>();
     }
 
     public int getPrice() {return this.price;}
