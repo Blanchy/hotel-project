@@ -5,7 +5,9 @@ import javax.swing.event.ChangeListener;
 
 /**
  * 
- * @author blanchypolangcos
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
  *
  * Guest session which is created when a user enters their ID. 
  * Retrieves pre-existing reservations upon creation.

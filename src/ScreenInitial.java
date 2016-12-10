@@ -10,6 +10,7 @@ public class ScreenInitial extends JPanel {
 	private HotelView view;
 
 	public ScreenInitial(HotelView v) {
+
 		view = v;
 
 		setLayout(new GridLayout(3,1));

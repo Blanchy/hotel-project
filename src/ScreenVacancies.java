@@ -7,7 +7,12 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-
+/**
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
+ **/
 public class ScreenVacancies extends JPanel {
 
 	private HotelView view; 

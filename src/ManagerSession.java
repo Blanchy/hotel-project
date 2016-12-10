@@ -8,7 +8,10 @@ import javax.swing.event.ChangeEvent;
 
 /**
  * 
- * @author blanchypolangcos
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
  * model for the ScreenManagerView.java class
  */
 public class ManagerSession implements User {

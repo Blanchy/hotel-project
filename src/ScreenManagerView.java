@@ -13,6 +13,12 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
+ **/
 public class ScreenManagerView extends JPanel {
 
 	private HotelView view;

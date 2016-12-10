@@ -3,7 +3,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-
+/**
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
+ **/
 public class ScreenUserID extends JPanel {
 
 	private HotelView view;

@@ -6,8 +6,10 @@ import javax.swing.*;
 
 /**
  * 
- * @author blanchypolangcos
- * 
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
  * HotelView contains a JFrame. 
  * It initializes with the JPanel ScreenInitial, and the panel is added to the frame. 
  * Each screen has buttons with action listeners.

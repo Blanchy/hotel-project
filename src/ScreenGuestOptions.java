@@ -5,7 +5,12 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-
+/**
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
+ **/
 public class ScreenGuestOptions extends JPanel {
 
 	private HotelView view;
