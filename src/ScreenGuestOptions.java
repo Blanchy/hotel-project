@@ -9,7 +9,7 @@ import javax.swing.*;
 public class ScreenGuestOptions extends JPanel {
 
 	private HotelView view;
-	
+
 	public ScreenGuestOptions(HotelView v) {
 		view = v;
 		setPreferredSize(new Dimension(200,300));
@@ -17,7 +17,7 @@ public class ScreenGuestOptions extends JPanel {
 		JButton makeRes = new JButton("Make a Reservation");
 		JButton viewDelete = new JButton("View/Delete Reservations");
 		JButton signOut = new JButton("Sign out of Guest User");
-		
+
 		makeRes.addActionListener(new ActionListener() {
 
 			@Override
@@ -50,7 +50,7 @@ public class ScreenGuestOptions extends JPanel {
 			}
 
 		});
-		
+
 		add(makeRes);
 		add(viewDelete);
 		add(signOut);
