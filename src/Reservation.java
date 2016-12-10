@@ -115,10 +115,10 @@ public class Reservation {
     	String[] sd = startDate.split("/");
     	String[] ed = endDate.split("/");
     	
-    	Calendar tempCal1 = new GregorianCalendar(Integer.parseInt(sd[1]), 
-    			Integer.parseInt(sd[0]), Integer.parseInt(sd[2]));
-    	Calendar tempCal2 = new GregorianCalendar(Integer.parseInt(ed[1]), 
-    			Integer.parseInt(ed[0]), Integer.parseInt(ed[2]));
+    	Calendar tempCal1 = new GregorianCalendar(Integer.parseInt(sd[2]), 
+    			Integer.parseInt(sd[0]) + 1, Integer.parseInt(sd[1]));
+    	Calendar tempCal2 = new GregorianCalendar(Integer.parseInt(ed[2]), 
+    			Integer.parseInt(ed[0]) + 1, Integer.parseInt(ed[1]));
         int daysBetween = (int) ((tempCal2.getTime().getTime() - tempCal1.getTime().getTime()) / (1000 * 60 * 60 * 24));
         /*if (daysBetween > 60) {daysBetween = -1;}*/
         return daysBetween;

@@ -53,12 +53,12 @@ public class Room {
     	String[] dateArray1 = date1.split("/");
     	String[] dateArray2 = date2.split("/");
     	
-    	Calendar start = new GregorianCalendar(Integer.parseInt(dateArray1[1]), 
-    			Integer.parseInt(dateArray1[0]) + 1, Integer.parseInt(dateArray1[2]));
+    	Calendar start = new GregorianCalendar(Integer.parseInt(dateArray1[2]), 
+    			Integer.parseInt(dateArray1[0]) + 1, Integer.parseInt(dateArray1[1]));
     	start.clear(Calendar.HOUR); start.clear(Calendar.MINUTE); start.clear(Calendar.SECOND);start.clear(Calendar.MILLISECOND);
     	
-    	Calendar end = new GregorianCalendar(Integer.parseInt(dateArray2[1]), 
-    			Integer.parseInt(dateArray2[0]) + 1, Integer.parseInt(dateArray2[2]));
+    	Calendar end = new GregorianCalendar(Integer.parseInt(dateArray2[2]), 
+    			Integer.parseInt(dateArray2[0]) + 1, Integer.parseInt(dateArray2[1]));
     	end.clear(Calendar.HOUR); end.clear(Calendar.MINUTE); end.clear(Calendar.SECOND);end.clear(Calendar.MILLISECOND);
     	
     	while (!start.equals(end)) {
