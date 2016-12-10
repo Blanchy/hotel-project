@@ -102,8 +102,8 @@ public class ScreenManagerView extends JPanel {
 	public void drawRoomView(int room) {
 		body.removeAll();
 		body.repaint();
-		JPanel left = drawMonth(room);
-		JPanel right = drawMonthInfo(room);
+		JPanel left = drawRoom(room);
+		JPanel right = drawRoomInfo(room);
 		body.add(left);
 		body.add(right);
 		
@@ -166,16 +166,16 @@ public class ScreenManagerView extends JPanel {
 		JPanel jp = new JPanel();
 		jp.setLayout(new GridLayout(5,4));
 		
-		for (i = 1; i <= 20; i++) {
-			JLabel room = new JLabel(i + "");
-			if ((i-1) == ms.getCurrentRoom()) {
-				room.setFont(new Font(null, Font.BOLD, 12));
+		for (int i = 1; i <= 20; i++) {
+			JLabel roomLabel = new JLabel(i + "");
+			if ((i-1) == room) {
+				roomLabel.setFont(new Font(null, Font.BOLD, 12));
 			}
-			room.addMouseListener(new MouseListener() {
+			roomLabel.addMouseListener(new MouseListener() {
 
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					ms.setCurrentRoom(Integer.parseInt(room.getText() - 1);
+					ms.setCurrentRoom(Integer.parseInt(roomLabel.getText()) - 1);
 				}
 
 				@Override
@@ -207,7 +207,7 @@ public class ScreenManagerView extends JPanel {
 		Room r = view.getHotel().getRoom(room);
 		ArrayList<Reservation> reservations = r.getAllReservations();
 		
-		String roomNumber = "Room number: " + (r.getRoomNumber + 1);
+		String roomNumber = "Room number: " + (r.getRoomNumber() + 1);
 		String price = "Price: " + r.getPrice();
 		
 		String reservationsString = "Reservations: \n";
