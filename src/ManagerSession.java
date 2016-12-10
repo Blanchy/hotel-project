@@ -21,9 +21,13 @@ public class ManagerSession implements User {
 	
 	public ManagerSession(Hotel h) {
 		hotel = h;
+		listeners = new ArrayList<ChangeListener>();
 		currentRoom = 0;
 		currentDate[] = new int[3];
 		cal = new GregorianCalendar();
+		currentDate[0] = cal.get(Calendar.MONTH);
+		currentDate[1] = cal.get(Calendar.DATE);
+		currentDate[2] = cal.get(Calendar.YEAR);
 	}
 
 	@Override
