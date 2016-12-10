@@ -151,10 +151,10 @@ public class ScreenManagerView extends JPanel {
 		
 		for (Room r : allRooms) {
 			if (r.isAvailable(date[0] + "/" + date[1] + "/" + date[2])) {
-				vacantText = vacantText + r.getRoomNumber() + "\n";
+				vacantText = vacantText + (r.getRoomNumber()+1) + "\n";
 			}
 			else {
-				reservedText = reservedText + r.getRoomNumber() + "\n";
+				reservedText = reservedText + (r.getRoomNumber()+1) + "\n";
 			}
 		}
 		
