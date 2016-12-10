@@ -195,7 +195,7 @@ public class ScreenManagerView extends JPanel {
 				//do nothing
 			}
 			calGrid.add(day, SwingConstants.CENTER);
-		}
+		} 
 		
 		backYear.addActionListener(new ActionListener() {
 			@Override
