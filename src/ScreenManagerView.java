@@ -63,7 +63,7 @@ public class ScreenManagerView extends JPanel {
 		ChangeListener l = new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				if (view) {
+				if (viewMode) {
 					drawMonthView(ms.getCurrentDate());
 				}
 				else {
@@ -73,7 +73,6 @@ public class ScreenManagerView extends JPanel {
 			}
 		}
 		ms.attach(l);
-		
 		
 		drawRoomView(ms.getCurrentRoom());
 		
@@ -124,11 +123,38 @@ public class ScreenManagerView extends JPanel {
 	/**
 	 * for the selected day of the month, this window shows the reserved rooms
 	 * as well as vacant rooms
+	 * @param date array, assuming array is in form of {DD, MM, YYYY}
 	 * @return
 	 */
 	public JPanel drawMonthInfo(int[] date) {
+		JPanel jp = new JPanel();
+		jp.setLayout(new FlowLayout());
 		
-		return null;
+		JTextArea monthInfo = new JTextArea();
+		monthInfo.setPreferredSize(textAreaSize);
+		
+		String monthInfoText = "Rooms on " + date[0] + "/" + date[1] + "/" + date[2] + "\n";
+		String vacantText = "Vacant on this day: \n";
+		String reservedText = "Reserved on this day: \n";
+		
+		Room[] allRooms = view.getHotel().getRooms();
+		
+		for (Room r : allRooms) {
+			if (r.isAvailable(date[0] + "/" + date[1] + "/" + date[2])) {
+				vacantText = vacantText + r.getRoomNumber() + "\n";
+			}
+			else {
+				reservedText = reservedText + r.getRoomNumber() + "\n";
+			}
+		}
+		
+		monthInfo.setText(monthInfoText
+				+ vacantText
+				+ reservedText);
+		
+		jp.add(monthInfo);
+		
+		return jp;
 	}
 	
 	/**
@@ -173,6 +199,7 @@ public class ScreenManagerView extends JPanel {
 	 */
 	public JPanel drawRoomInfo(int room) {
 		JPanel jp = new JPanel();
+		jp.setLayout(new FlowLayout());
 		JTextArea roomInfo = new JTextArea();
 		roomInfo.setPreferredSize(textAreaSize);
 		
