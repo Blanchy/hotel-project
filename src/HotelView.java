@@ -50,6 +50,7 @@ public class HotelView {
 	public void changeScreen(JPanel jp) {
 		
 		frame.setContentPane(jp);
+		frame.pack();
 		frame.invalidate();
 		frame.validate();
 		frame.repaint();

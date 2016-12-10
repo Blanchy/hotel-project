@@ -10,7 +10,8 @@ public class ScreenGuest extends JPanel {
 	
 	public ScreenGuest(HotelView v) {
 		view = v;
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setPreferredSize(new Dimension(200,300));
+		setLayout(new GridLayout(4,1));
 		
 		JLabel guest = new JLabel("Guest User Options:", SwingConstants.CENTER);
 		JButton signUp = new JButton("Sign Up");
@@ -18,37 +19,22 @@ public class ScreenGuest extends JPanel {
 		JButton goBack = new JButton("Go Back");
 		
 		signUp.addActionListener(new ActionListener() {
-
 			@Override
-
 			public void actionPerformed(ActionEvent e) {
-
 				view.changeScreen(new ScreenUserID(view));
 			}
-
 		});
 		signIn.addActionListener(new ActionListener() {
-
 			@Override
-
 			public void actionPerformed(ActionEvent e) {
-
 				view.changeScreen(new ScreenUserID(view));
-				
-
 			}
-
 		});
 		goBack.addActionListener(new ActionListener() {
-
 			@Override
-
 			public void actionPerformed(ActionEvent e) {
-
 				view.changeScreen(new ScreenInitial(view));
-
 			}
-
 		});
 		
 		add(guest);

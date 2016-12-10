@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,7 +11,8 @@ public class ScreenGuestOptions extends JPanel {
 	
 	public ScreenGuestOptions(HotelView v) {
 		view = v;
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setPreferredSize(new Dimension(200,300));
+		setLayout(new GridLayout(3,1));
 		JButton makeRes = new JButton("Make a Reservation");
 		JButton viewDelete = new JButton("View/Delete Reservations");
 		JButton signOut = new JButton("Sign out of Guest User");

@@ -1,3 +1,5 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -18,20 +20,22 @@ public class ScreenManagerView extends JPanel {
 	private JPanel buttons;
 	private ManagerSession ms;
 	private Dimension textAreaSize;
-	
+	private Dimension bodySize;
+
 	boolean viewMode; /* false if on room view, true if on month view */
 	
 	public ScreenManagerView(HotelView v) {
 		view = v;
 		ms = (ManagerSession) view.getUserSession();
 		viewMode = false;
-		textAreaSize = new Dimension(300, 400);
+		textAreaSize = new Dimension(200, 350);
+		bodySize = new Dimension(200,200);
 		
 		body = new JPanel();
 		buttons = new JPanel();
 		
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		body.setLayout(new GridLayout(1,2));
+		body.setLayout(new BoxLayout(body, BoxLayout.X_AXIS));
 		buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
 		
 		JButton back = new JButton("Go Back");
@@ -108,6 +112,10 @@ public class ScreenManagerView extends JPanel {
 		body.add(right);
 		
 		body.repaint();
+		
+		invalidate();
+		validate();
+		repaint();
 	}
 	
 	/**
@@ -133,6 +141,7 @@ public class ScreenManagerView extends JPanel {
 		
 		JTextArea monthInfo = new JTextArea();
 		monthInfo.setPreferredSize(textAreaSize);
+		monthInfo.setEditable(false);
 		
 		String monthInfoText = "Rooms on " + date[0] + "/" + date[1] + "/" + date[2] + "\n";
 		String vacantText = "Vacant on this day: \n";
@@ -153,7 +162,12 @@ public class ScreenManagerView extends JPanel {
 				+ vacantText
 				+ reservedText);
 		
-		jp.add(monthInfo);
+		JScrollPane monthInfoScroll = new JScrollPane(monthInfo, 
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		monthInfoScroll.setPreferredSize(textAreaSize);
+		jp.add(monthInfoScroll);
 		
 		return jp;
 	}
@@ -164,12 +178,20 @@ public class ScreenManagerView extends JPanel {
 	 */
 	public JPanel drawRoom(int room) {
 		JPanel jp = new JPanel();
-		jp.setLayout(new GridLayout(5,4));
+		jp.setLayout(new BorderLayout());
+		
+		JPanel roomGrid = new JPanel();
+		roomGrid.setLayout(new GridLayout(5,4));
+		roomGrid.setPreferredSize(bodySize);
+		
+		int fontSize = 15;
 		
 		for (int i = 1; i <= 20; i++) {
 			JLabel roomLabel = new JLabel(i + "");
+			roomLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			roomLabel.setFont(new Font(null, Font.PLAIN, fontSize));
 			if ((i-1) == room) {
-				roomLabel.setFont(new Font(null, Font.BOLD, 12));
+				roomLabel.setFont(new Font(null, Font.BOLD, fontSize));
 			}
 			roomLabel.addMouseListener(new MouseListener() {
 
@@ -188,7 +210,10 @@ public class ScreenManagerView extends JPanel {
 				public void mouseExited(MouseEvent e) {}
 
 			});
+			roomGrid.add(roomLabel);
 		}
+		jp.add(new JLabel("Select a Room:"), BorderLayout.NORTH);
+		jp.add(roomGrid, BorderLayout.CENTER);
 		
 		return jp;
 	}
@@ -203,12 +228,13 @@ public class ScreenManagerView extends JPanel {
 		jp.setLayout(new FlowLayout());
 		JTextArea roomInfo = new JTextArea();
 		roomInfo.setPreferredSize(textAreaSize);
+		roomInfo.setEditable(false);
 		
 		Room r = view.getHotel().getRoom(room);
 		ArrayList<Reservation> reservations = r.getAllReservations();
 		
 		String roomNumber = "Room number: " + (r.getRoomNumber() + 1);
-		String price = "Price: " + r.getPrice();
+		String price = "Price: $" + r.getPrice();
 		
 		String reservationsString = "Reservations: \n";
 		if (reservations.size() < 1) {
@@ -229,7 +255,12 @@ public class ScreenManagerView extends JPanel {
 				+ reservationsString
 				);
 		
-		jp.add(roomInfo);
+		JScrollPane roomInfoScroll = new JScrollPane(roomInfo, 
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		roomInfoScroll.setPreferredSize(textAreaSize);
+		jp.add(roomInfoScroll);
 		
 		return jp;
 	}

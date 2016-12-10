@@ -11,9 +11,10 @@ public class ScreenReceiptOptions extends JPanel {
 	public ScreenReceiptOptions(HotelView v) {
 		view  = v;
 		
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setPreferredSize(new Dimension(200,300));
+		setLayout(new GridLayout(3,1));
 		
-		JLabel option = new JLabel("Choose format of reciept:");
+		JLabel option = new JLabel("Choose format of reciept:",SwingConstants.CENTER);
 		JButton simple = new JButton("Simple");
 		JButton comprehensive = new JButton("Comprehensive");
 		

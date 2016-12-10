@@ -56,24 +56,30 @@ public class ScreenVacancies extends JPanel {
 			@Override
 
 			public void actionPerformed(ActionEvent e) {
-				int roomNum = Integer.parseInt(enterRoom.getText());
-				
-				boolean found = false;
-				
-				for (Room r : gs.getRooms()) {
-					if (r.getRoomNumber() + 1 == roomNum) { // +1 because getRoomNumber returns array position
-						found = true;
+				try {
+					int roomNum = Integer.parseInt(enterRoom.getText());
+					
+					boolean found = false;
+					
+					for (Room r : gs.getRooms()) {
+						if (r.getRoomNumber() + 1 == roomNum) { // +1 because getRoomNumber returns array position
+							found = true;
+						}
 					}
+					
+					if (found) {
+						gs.addReservation(roomNum - 1);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Room not available!", "Error", 
+								JOptionPane.INFORMATION_MESSAGE);
+					}
+					
 				}
-				
-				if (found) {
-					gs.addReservation(roomNum - 1);
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Room not available!", "Error", 
+				catch (NumberFormatException n) {
+					JOptionPane.showMessageDialog(null, "Invalid input!", "Error", 
 							JOptionPane.INFORMATION_MESSAGE);
 				}
-				
 				enterRoom.setText("");
 			}
 
