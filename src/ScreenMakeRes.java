@@ -110,7 +110,16 @@ public class ScreenMakeRes extends JPanel {
 			return false;
 		}
 		Reservation test = new Reservation(-1, "", input1, input2);
-		if (test.getNumberOfDays(input1, input2) <= 0 || test.getNumberOfDays(input1, input2) > 60) {
+		if (test.getNumberOfDays(input1, input2) > 60) {
+			JOptionPane.showMessageDialog(null, "Reservations can't be longer than 60 days.", "Error", 
+					JOptionPane.INFORMATION_MESSAGE);
+			System.out.println(test.getNumberOfDays(input1, input2));
+			return false;
+		}
+		else if (test.getNumberOfDays(input1, input2) <= 0) {
+			JOptionPane.showMessageDialog(null, "The check-out date is earlier than the check-in date.", "Error", 
+					JOptionPane.INFORMATION_MESSAGE);
+			System.out.println(test.getNumberOfDays(input1, input2));
 			return false;
 		}
 		return true;
