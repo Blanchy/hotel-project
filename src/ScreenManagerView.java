@@ -1,18 +1,30 @@
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
 
 public class ScreenManagerView extends JPanel {
 
 	private HotelView view;
 	private JPanel body;
 	private JPanel buttons;
+	private ManagerSession ms;
+	private Dimension textAreaSize;
+	
+	boolean viewMode; /* false if on room view, true if on month view */
 	
 	public ScreenManagerView(HotelView v) {
 		view = v;
+		ms = (ManagerSession) view.getSession();
+		viewMode = false;
+		textAreaSize = new Dimension(300, 400);
 		
 		body = new JPanel();
 		buttons = new JPanel();
@@ -35,18 +47,35 @@ public class ScreenManagerView extends JPanel {
 		toMonth.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				drawMonthView();
+				viewMode = true;
+				drawMonthView(ms.getCurrentDate());
 			}
 		});
 		
 		toRoom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				drawRoomView();
+				viewMode = false;
+				drawRoomView(ms.getCurrentRoom());
 			}
 		});
 		
-		drawRoomView();
+		ChangeListener l = new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				if (view) {
+					drawMonthView(ms.getCurrentDate());
+				}
+				else {
+					drawRoomView(ms.getCurrentRoom());
+				}
+				repaint();
+			}
+		}
+		ms.attach(l);
+		
+		
+		drawRoomView(ms.getCurrentRoom());
 		
 		add(body);
 		buttons.add(toRoom);
@@ -56,11 +85,11 @@ public class ScreenManagerView extends JPanel {
 		
 	}
 	
-	public void drawMonthView() {
+	public void drawMonthView(int[] date) {
 		body.removeAll();
 		body.repaint();
-		JPanel left = drawMonth();
-		JPanel right = drawMonthInfo();
+		JPanel left = drawMonth(date);
+		JPanel right = drawMonthInfo(date);
 		body.add(left);
 		body.add(right);
 		body.repaint();
@@ -70,11 +99,11 @@ public class ScreenManagerView extends JPanel {
 		repaint();
 	}
 	
-	public void drawRoomView() {
+	public void drawRoomView(int room) {
 		body.removeAll();
 		body.repaint();
-		JPanel left = drawMonth();
-		JPanel right = drawMonthInfo();
+		JPanel left = drawMonth(room);
+		JPanel right = drawMonthInfo(room);
 		body.add(left);
 		body.add(right);
 		
@@ -86,7 +115,7 @@ public class ScreenManagerView extends JPanel {
 	 * calendar can also be advanced by month and by year
 	 * @return Jpanel containing clickable calendar
 	 */
-	public JPanel drawMonth() {
+	public JPanel drawMonth(int[] date) {
 		JPanel calendar = new JPanel();
 		/* add stuff to calendar */
 		return calendar;
@@ -97,7 +126,7 @@ public class ScreenManagerView extends JPanel {
 	 * as well as vacant rooms
 	 * @return
 	 */
-	public JPanel drawMonthInfo() {
+	public JPanel drawMonthInfo(int[] date) {
 		
 		return null;
 	}
@@ -106,9 +135,34 @@ public class ScreenManagerView extends JPanel {
 	 * this shows ALL rooms in the hotel. this is also clickable.
 	 * @return
 	 */
-	public JPanel drawRoom() {
+	public JPanel drawRoom(int room) {
 		JPanel jp = new JPanel();
-		jp.add(new JTextArea("tester"));
+		jp.setLayout(new GridLayout(5,4));
+		
+		for (i = 1; i <= 20; i++) {
+			JLabel room = new JLabel(i + "");
+			if ((i-1) == ms.getCurrentRoom()) {
+				room.setFont(new Font(null, Font.BOLD, 12));
+			}
+			room.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					ms.setCurrentRoom(Integer.parseInt(room.getText() - 1);
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {}
+				@Override
+				public void mouseReleased(MouseEvent e) {}
+				@Override
+				public void mouseEntered(MouseEvent e) {}
+				@Override
+				public void mouseExited(MouseEvent e) {}
+
+			});
+		}
+		
 		return jp;
 	}
 	
@@ -117,9 +171,38 @@ public class ScreenManagerView extends JPanel {
 	 * room number, price, and (if applicable) the reservation info for each reservation (user ID, start and end dates)
 	 * @return
 	 */
-	public JPanel drawRoomInfo() {
+	public JPanel drawRoomInfo(int room) {
 		JPanel jp = new JPanel();
-		jp.add(new JTextArea("tester"));
+		JTextArea roomInfo = new JTextArea();
+		roomInfo.setPreferredSize(textAreaSize);
+		
+		Room r = view.getHotel().getRoom(room);
+		ArrayList<Reservation> reservations = r.getAllReservations();
+		
+		String roomNumber = "Room number: " + (r.getRoomNumber + 1);
+		String price = "Price: " + r.getPrice();
+		
+		String reservationsString = "Reservations: \n";
+		if (reservations.size() < 1) {
+			reservationsString = reservationsString + "None\n";
+		}
+		else {
+			for (Reservation rsvn : reservations) {
+				reservationsString = reservationsString + 
+						"User " + rsvn.getUserID() + 
+						" from " + rsvn.getStartDate() + 
+						" - " + rsvn.getEndDate() + "\n";
+			}
+		}
+ 			
+		roomInfo.setText(
+				roomNumber + "\n"
+				+ price + "\n"
+				+ reservationsString
+				);
+		
+		jp.add(roomInfo);
+		
 		return jp;
 	}
 
