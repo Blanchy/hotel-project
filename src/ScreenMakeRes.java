@@ -109,8 +109,8 @@ public class ScreenMakeRes extends JPanel {
 					JOptionPane.INFORMATION_MESSAGE);
 			return false;
 		}
-		Reservation test = new Reservation(-1, 0, input1, input2);
-		if (test.getNumberofDays() <= 0 || test.getNumberofDays() > 60) {
+		Reservation test = new Reservation(-1, "", input1, input2);
+		if (test.getNumberOfDays(input1, input2) <= 0 || test.getNumberOfDays(input1, input2) > 60) {
 			return false;
 		}
 		return true;
