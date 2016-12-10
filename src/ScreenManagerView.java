@@ -22,7 +22,7 @@ public class ScreenManagerView extends JPanel {
 	
 	public ScreenManagerView(HotelView v) {
 		view = v;
-		ms = (ManagerSession) view.getSession();
+		ms = (ManagerSession) view.getUserSession();
 		viewMode = false;
 		textAreaSize = new Dimension(300, 400);
 		
