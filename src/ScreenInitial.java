@@ -13,7 +13,7 @@ public class ScreenInitial extends JPanel {
 		view = v;
 
 		setLayout(new GridLayout(3,1));
-
+		setPreferredSize(new Dimension(200,300));
 		JLabel userType = new JLabel("User Type:", SwingConstants.CENTER);
 		JButton manager = new JButton("Manager");
 		JButton guest = new JButton("Guest");

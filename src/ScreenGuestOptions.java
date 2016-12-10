@@ -13,7 +13,8 @@ public class ScreenGuestOptions extends JPanel {
 	public ScreenGuestOptions(HotelView v) {
 		view = v;
 		setPreferredSize(new Dimension(200,300));
-		setLayout(new GridLayout(3,1));
+		setLayout(new GridLayout(4,1));
+		JLabel guestOpt = new JLabel("Guest Options:" , SwingConstants.CENTER);
 		JButton makeRes = new JButton("Make a Reservation");
 		JButton viewDelete = new JButton("View/Delete Reservations");
 		JButton signOut = new JButton("Sign out of Guest User");
@@ -51,6 +52,7 @@ public class ScreenGuestOptions extends JPanel {
 
 		});
 		
+		add(guestOpt);
 		add(makeRes);
 		add(viewDelete);
 		add(signOut);
