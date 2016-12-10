@@ -78,12 +78,13 @@ public class GuestSession implements User {
 		Room[] rooms = hotel.getRooms();
 		
 		ArrayList<Room> available = new ArrayList<Room>();
+		
 		for (Room r : rooms) {
-			/*
-			 * first check if the (r.getPrice() == this.price), then
-			 * check if room r is available between startDate and endDate,
-			 * and if so then available.add(r)
-			 */
+			if (r.getPrice() == this.price) {
+				if (r.isAvailable(startDate, endDate)) {
+					available.add(r);
+				}
+			}
 		}
 		return available;
 	}
