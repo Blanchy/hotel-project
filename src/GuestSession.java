@@ -83,12 +83,42 @@ public class GuestSession implements User {
 		
 		for (Room r : rooms) {
 			if (r.getPrice() == this.price) {
-				if (r.isAvailable(startDate, endDate)) {
+				if (r.isRoomAvailable(startDate, endDate)) {
 					available.add(r);
 				}
 			}
 		}
 		return available;
+	}
+
+	@Override
+	public void loadReservations() {
+
+	}
+
+	@Override
+	public void viewInformation() {
+
+	}
+
+	@Override
+	public void saveReservations() {
+
+	}
+
+	@Override
+	public void addReservation() {
+
+	}
+
+	@Override
+	public String viewReservation() {
+		return null;
+	}
+
+	@Override
+	public void deleteReservation() {
+
 	}
 
 	/**

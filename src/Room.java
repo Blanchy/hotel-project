@@ -23,20 +23,22 @@ public class Room {
     public int getRoomNumber() {return this.number;}
 
 
-    public boolean isAvailable(String isAvaliableDate)
+    public boolean isRoomAvailable(String isAvaliableDate)
     {
+        //System.out.println("ENTER ROOM DEBUG MODE");
+        //System.out.println("isAvaliableDate: " + isAvaliableDate + " lmao why did i decide to print this");
         String[] checkDateArray = isAvaliableDate.split("/");
         int checkDateMonth = Integer.parseInt(checkDateArray[0]);
         int checkDateDay = Integer.parseInt(checkDateArray[1]);
         int checkDateYear = Integer.parseInt(checkDateArray[2]);
-        Calendar tempCalendar = new GregorianCalendar(checkDateYear, checkDateMonth+1, checkDateDay);
+        Calendar tempCalendar = new GregorianCalendar(checkDateYear, checkDateMonth-1, checkDateDay);
+        //System.out.println("tempcalendar time: " + tempCalendar.getTime());
         Date checkDate = tempCalendar.getTime();
-
 
         boolean flag = true;
         for (Reservation r : reservations)
         {
-            flag = r.isAvailable(isAvaliableDate);
+            flag = r.isResAvailable(isAvaliableDate);
             if (flag == false)
             {return flag;} //if flag is every false,
         }
@@ -49,22 +51,31 @@ public class Room {
      * @param date2 the end date in MM/DD/YYYY
      * @return if room is available between these dates
      */
-    public boolean isAvailable(String date1, String date2) {
+    public boolean isRoomAvailable(String date1, String date2) {
     	String[] dateArray1 = date1.split("/");
     	String[] dateArray2 = date2.split("/");
     	
     	Calendar start = new GregorianCalendar(Integer.parseInt(dateArray1[2]), 
-    			Integer.parseInt(dateArray1[0]) + 1, Integer.parseInt(dateArray1[1]));
-    	start.clear(Calendar.HOUR); start.clear(Calendar.MINUTE); start.clear(Calendar.SECOND);start.clear(Calendar.MILLISECOND);
-    	 
+    			Integer.parseInt(dateArray1[0])-1, Integer.parseInt(dateArray1[1]));
+    	start.clear(Calendar.HOUR);
+        start.clear(Calendar.MINUTE);
+        start.clear(Calendar.SECOND);
+        start.clear(Calendar.MILLISECOND);
+        //System.out.println("start cal: " + start.getTime());
     	Calendar end = new GregorianCalendar(Integer.parseInt(dateArray2[2]), 
-    			Integer.parseInt(dateArray2[0]) + 1, Integer.parseInt(dateArray2[1]));
-    	end.clear(Calendar.HOUR); end.clear(Calendar.MINUTE); end.clear(Calendar.SECOND);end.clear(Calendar.MILLISECOND);
-    	
+    			Integer.parseInt(dateArray2[0])-1, Integer.parseInt(dateArray2[1]));
+        //System.out.println("end cal: " + end.getTime());
+    	end.clear(Calendar.HOUR);
+        end.clear(Calendar.MINUTE);
+        end.clear(Calendar.SECOND);
+       end.clear(Calendar.MILLISECOND);
+
+
     	while (!start.equals(end)) {
-    		String testDate = start.get(Calendar.MONTH) + "/" + 
+    		String testDate = start.get(Calendar.MONTH)+1 + "/" +
     				start.get(Calendar.DATE) + "/" + start.get(Calendar.YEAR);
-    		if (!isAvailable(testDate)) { 		
+            //System.out.println("TEST DATE IS: " + testDate);
+    		if (!isRoomAvailable(testDate)) {
     			return false;
     		}
     		start.add(Calendar.DATE, 1);

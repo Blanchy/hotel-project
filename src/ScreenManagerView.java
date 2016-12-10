@@ -260,13 +260,13 @@ public class ScreenManagerView extends JPanel {
 		Room[] allRooms = view.getHotel().getRooms();
 		
 		for (Room r : allRooms) {
-			if (r.isAvailable(date[0] + "/" + date[1] + "/" + date[2])) {
+			if (r.isRoomAvailable(date[0] + "/" + date[1] + "/" + date[2])) {
 				vacantText = vacantText + (r.getRoomNumber()+1) + "\n";
 			}
 			else {
 				String user = "";
 				for (Reservation rsvn : r.getAllReservations()) {
-					if (!rsvn.isAvailable(date[0] + "/" + date[1] + "/" + date[2])){ //if reservation is occupied on this date
+					if (!rsvn.isResAvailable(date[0] + "/" + date[1] + "/" + date[2])){ //if reservation is occupied on this date
 						user = rsvn.getUserID();
 					}
 				}
