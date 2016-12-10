@@ -95,6 +95,14 @@ public class Hotel {
     	return rooms;
     }
 
+    /**
+     * returns the specified room
+     * @return Room in specified array index
+     */
+    public Room getRoom(int roomNum) {
+    	return rooms[roomNum];
+    }
+    
     public static void main(String[] args)
     {
         int rows = 4;
