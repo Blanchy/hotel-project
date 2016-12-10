@@ -64,7 +64,7 @@ public class Room {
     	while (!start.equals(end)) {
     		String testDate = start.get(Calendar.MONTH) + "/" + 
     				start.get(Calendar.DATE) + "/" + start.get(Calendar.YEAR);
-    		if (!isAvailable(testDate)) { 			
+    		if (!isAvailable(testDate)) { 		
     			return false;
     		}
     		start.add(Calendar.DATE, 1);
