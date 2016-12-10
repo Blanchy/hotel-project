@@ -33,7 +33,7 @@ public class HotelView {
 
 		frame = new JFrame();
 		frame.setLayout(new BorderLayout());
-		frame.setPreferredSize(new Dimension(500,500));
+//		frame.setPreferredSize(new Dimension(500,500));
 
 		currentPan = new ScreenInitial(this);
 		frame.add(currentPan, BorderLayout.CENTER);
