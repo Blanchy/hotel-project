@@ -18,6 +18,11 @@ public class ScreenReservations extends JPanel{
 
 		view = v;
 
+		/**
+		 * get reservations here!
+		 */
+		//v.getHotel().getRooms();
+
 		JButton menu = new JButton("Return to Guest Menu");
 
 		menu.addActionListener(new ActionListener() {
@@ -65,9 +70,10 @@ public class ScreenReservations extends JPanel{
 							options[1]);
 
 					if(op == JOptionPane.NO_OPTION){
-
-						//Cancel the reservation here.
-
+						/**
+						 * Delete Reservation here
+						 */
+						//view.getHotel().deleteReservation();
 						temp.setVisible(false);
 					}
 
@@ -97,7 +103,10 @@ public class ScreenReservations extends JPanel{
 	}
 
 	public void getReservations(String id){
-
+		/**
+		 * Function for getting reservations for a particular
+		 */
+		//view.getHotel().getRooms();
 	}
 
 
