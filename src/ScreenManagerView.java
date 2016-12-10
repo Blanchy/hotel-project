@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class ScreenManagerView extends JPanel {
 
@@ -71,7 +72,7 @@ public class ScreenManagerView extends JPanel {
 				}
 				repaint();
 			}
-		}
+		};
 		ms.attach(l);
 		
 		drawRoomView(ms.getCurrentRoom());

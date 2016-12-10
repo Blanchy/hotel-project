@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
@@ -23,7 +25,7 @@ public class ManagerSession implements User {
 		hotel = h;
 		listeners = new ArrayList<ChangeListener>();
 		currentRoom = 0;
-		currentDate[] = new int[3];
+		currentDate = new int[3];
 		cal = new GregorianCalendar();
 		currentDate[0] = cal.get(Calendar.MONTH);
 		currentDate[1] = cal.get(Calendar.DATE);
@@ -32,7 +34,7 @@ public class ManagerSession implements User {
 
 	@Override
 	public ArrayList<Room> getRooms() {
-		ArrayList<Room> roomList = Arrays.asList(hotel.getRooms());
+		ArrayList<Room> roomList = (ArrayList<Room>) Arrays.asList(hotel.getRooms());
 		return roomList;
 	}
 	
