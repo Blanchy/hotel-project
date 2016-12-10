@@ -121,7 +121,7 @@ public class Reservation {
     			Integer.parseInt(ed[0]) + 1, Integer.parseInt(ed[1]));
         int daysBetween = (int) ((tempCal2.getTime().getTime() - tempCal1.getTime().getTime()) / (1000 * 60 * 60 * 24));
         /*if (daysBetween > 60) {daysBetween = -1;}*/
-        return daysBetween;
+        return daysBetween; 
     }
 
     public String toString()
