@@ -21,7 +21,7 @@ public class ScreenReservations extends JPanel{
 		/**
 		 * get reservations here!
 		 */
-		//v.getHotel().getRooms();
+		//getReservations();
 
 		JButton menu = new JButton("Return to Guest Menu");
 
