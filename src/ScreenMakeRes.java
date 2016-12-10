@@ -43,16 +43,20 @@ public class ScreenMakeRes extends JPanel {
 		seeLuxuryRooms.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				gs.setPrice(200);
-				gs.setStart(checkInDate.getText());
-				gs.setEnd(checkOutDate.getText());
-				
-				if (popup) { /*if popup, then it just closes */
-					((JFrame) (((JComponent) e.getSource()).getTopLevelAncestor())).dispose(); 
-				}
-				else {
-					gs.eraseNewReservations();
-					view.changeScreen(new ScreenVacancies(view));
+				if (checkSyntax(checkInDate.getText(),checkOutDate.getText())) {
+					gs.setPrice(200);
+
+
+					gs.setStart(checkInDate.getText());
+					gs.setEnd(checkOutDate.getText());
+
+					if (popup) { /*if popup, then it just closes */
+						((JFrame) (((JComponent) e.getSource()).getTopLevelAncestor())).dispose(); 
+					}
+					else {
+						gs.eraseNewReservations();
+						view.changeScreen(new ScreenVacancies(view));
+					}
 				}
 			}
 
@@ -61,16 +65,18 @@ public class ScreenMakeRes extends JPanel {
 		seeEconomicRooms.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				gs.setPrice(80);
-				gs.setStart(checkInDate.getText());
-				gs.setEnd(checkOutDate.getText());
-				
-				if (popup) { /*if popup, then it just closes */
-					((JFrame) (((JComponent) e.getSource()).getTopLevelAncestor())).dispose(); 
-				}
-				else {
-					gs.eraseNewReservations();
-					view.changeScreen(new ScreenVacancies(view));
+				if (checkSyntax(checkInDate.getText(),checkOutDate.getText())) {
+					gs.setPrice(80);
+					gs.setStart(checkInDate.getText());
+					gs.setEnd(checkOutDate.getText());
+
+					if (popup) { /*if popup, then it just closes */
+						((JFrame) (((JComponent) e.getSource()).getTopLevelAncestor())).dispose(); 
+					}
+					else {
+						gs.eraseNewReservations();
+						view.changeScreen(new ScreenVacancies(view));
+					}
 				}
 			}
 
@@ -85,6 +91,29 @@ public class ScreenMakeRes extends JPanel {
 		buttonPan.add(seeLuxuryRooms);
 		buttonPan.add(seeEconomicRooms);
 		add(buttonPan);
+	}
+	
+	public boolean checkSyntax(String input1, String input2) {
+		try {
+			String[] array1 = input1.split("/");
+			String[] array2 = input2.split("/");
+			for (String s : array1) {
+				int x = Integer.parseInt(s);
+			}
+			for (String s : array2) {
+				int x = Integer.parseInt(s);
+			}
+		}
+		catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Invalid input!", "Error", 
+					JOptionPane.INFORMATION_MESSAGE);
+			return false;
+		}
+		Reservation test = new Reservation(-1, 0, input1, input2);
+		if (test.getNumberofDays() <= 0 || test.getNumberofDays() > 60) {
+			return false;
+		}
+		return true;
 	}
 
 }
