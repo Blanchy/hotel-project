@@ -22,9 +22,6 @@ public class ScreenReceiptOptions extends JPanel {
 		JLabel option = new JLabel("Choose format of reciept:",SwingConstants.CENTER);
 		JButton simple = new JButton("Simple");
 		JButton comprehensive = new JButton("Comprehensive");
-
-		JButton back = new JButton("Return to Menu");
-
 		JButton menu = new JButton("Back to Guest menu");
 
 
@@ -66,12 +63,6 @@ public class ScreenReceiptOptions extends JPanel {
 
 			}
 
-		});
-		back.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				view.changeScreen(new ScreenGuestOptions(view));
-			}
 		});
 		
 		add(option);
