@@ -5,6 +5,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
+/**
+ * Comprehensive Receipt that implements the Receipt Strategy
+ */
 public class ComprehensiveReceipt implements ReceiptStrategy {
     private JFrame receiptFrame;
     private JPanel namePanel;
@@ -16,9 +19,11 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
     private ArrayList<Reservation> rooms;
     private ArrayList<Integer> reserved;
 
+    /**
+     * Constructor to print the Receipt
+     * @param info Receipt information ArrayList
+     */
     ComprehensiveReceipt(ArrayList info){
-
-        this.getRooms();
 
         receiptFrame = new JFrame("Simple Receipt");
 
@@ -28,21 +33,21 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
         totalDuesPanel = new JPanel();
 
         reservedRoomsPanel.setLayout(new GridLayout(0,1));
-
-
         userIDPanel.add(new JLabel("User ID: "));
 
         JTextArea userID = new JTextArea(info.get(0).toString());
+
         userID.setEditable(false);
-
         userIDPanel.add(userID);
-
         reservedRoomsPanel.add(new JLabel("Rooms reserved: "));
 
 
         reserved = (ArrayList<Integer>) info.get(2);
         rooms = (ArrayList<Reservation>) info.get(1);
 
+        /**
+         * Reserved Room Text
+         */
         for(int i = 0; i < reserved.size(); i++){
             JTextArea rm = new JTextArea(Integer.toString(reserved.get(i) + 1)  + ": " + rooms.get(i).toString() );
             rm.setEditable(false);
@@ -50,6 +55,9 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
             reservedRoomsPanel.add(rm);
         }
 
+        /**
+         * total dues
+         */
         totalDuesPanel.add(new JLabel("Total Dues: "));
         this.getTotalDues();
         totalDuesPanel.add(new JLabel("$" + Integer.toString(totalDue)));
@@ -58,8 +66,12 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
 
     }
 
+    /**
+     * prints receipt
+     */
     @Override
     public void printReceipt() {
+
         receiptFrame.setLayout(new BoxLayout(receiptFrame.getContentPane(), BoxLayout.Y_AXIS));
 
         receiptFrame.add(namePanel);
@@ -71,21 +83,9 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
         receiptFrame.setVisible(true);
     }
 
-    @Override
-    public void getUserID() {
-
-    }
-
-    @Override
-    public void getName() {
-
-    }
-
-    @Override
-    public void getRooms() {
-
-    }
-
+    /**
+     * calculates total dues.
+     */
     @Override
     public void getTotalDues() {
         for(int i = 0; i < reserved.size(); i++){

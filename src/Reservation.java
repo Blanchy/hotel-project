@@ -23,6 +23,7 @@ public class Reservation {
      * @param startDate start date of the reservation
      * @param endDate end date of the reservation
      */
+
     public Reservation(int arrayIndex, String userID, String startDate, String endDate)
     {
         /*
@@ -93,13 +94,13 @@ public class Reservation {
      * @return starting date of reservation
      */
     public String getStartDate() {return startDate;}
-    
+
     /**
      * gets ending date of the reservation
      * @return ending date of reservation
      */
     public String getEndDate() {return endDate;}
-    
+
     /**
      * returns array index within which Reservation object occupies Room[]
      * @return room index as it is in array
@@ -117,20 +118,20 @@ public class Reservation {
     {
     	String[] sd = startDate.split("/");
     	String[] ed = endDate.split("/");
-    	
-    	Calendar tempCal1 = new GregorianCalendar(Integer.parseInt(sd[2]), 
+
+    	Calendar tempCal1 = new GregorianCalendar(Integer.parseInt(sd[2]),
     			Integer.parseInt(sd[0]) + 1, Integer.parseInt(sd[1]));
-    	Calendar tempCal2 = new GregorianCalendar(Integer.parseInt(ed[2]), 
+    	Calendar tempCal2 = new GregorianCalendar(Integer.parseInt(ed[2]),
     			Integer.parseInt(ed[0]) + 1, Integer.parseInt(ed[1]));
         int daysBetween = (int) ((tempCal2.getTime().getTime() - tempCal1.getTime().getTime()) / (1000 * 60 * 60 * 24));
         /*if (daysBetween > 60) {daysBetween = -1;}*/
-        return daysBetween; 
+        return daysBetween;
     }
 
     public String toString()
     {
         String rtn = userID + " has reserved from " + startDate + " to " + endDate +
         ". Length of stay: " + getNumberOfDays(startDate, endDate);
-        return rtn; 
+        return rtn;
     }
-} //test comment 
+} //test comment

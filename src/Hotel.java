@@ -1,8 +1,6 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
+
 
 /**
  * @author BlanchyPolangcos
@@ -14,9 +12,10 @@ import java.util.ArrayList;
 public class Hotel {
 
     private Room[] rooms;
+    private String fileName = "load/Reservations";
 
     /**
-     * Constructor for Hotel 
+     * Constructor for Hotel
      **/
     public Hotel()
     {
@@ -53,7 +52,7 @@ public class Hotel {
     	int i = 0;
     	while (!roomFound) {
     		if (rooms[i] == roomIndex) {
-    			
+
     			rooms[i].deleteReservation(reservationStartDate);
     			roomFound = true;
     		}
@@ -65,24 +64,80 @@ public class Hotel {
     	/* assuming roomIndex goes 0-19 */
     }
 
+    /**
+     * loads reservation information from a file.
+     */
     public void loadReservations()
     {
-        //not done
+        try{
+            File file = new File("reservations.txt");
+
+            if (file.exists()) {
+                String temp = "";
+                ArrayList<String> temp = new ArrayList<String>();
+                FileInputStream fin = new FileInputStream(file);
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(fin));
+
+                String buffer = null;
+
+                while ((buffer = reader.readLine()) != null) {
+                    temp.add(buffer);
+                }
+
+                for(int y = 0; y < temp.size(); y++){
+                    String[] load = temp.get(y).split("#");
+                    addReservation(new Reservation(Integer.parseInt(load[1]), load[0], load[2], load[3]));
+                }
+
+            } else {
+                System.out.println("This is the first time running, so there's nothing to load.");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
-    public void saveReservations()
-    {
-        try {
-            PrintWriter writer = new PrintWriter("reservations.txt");
-            for (Room r : rooms) {
-                writer.println(r.toString());
+    public void saveReservations() {
+
+
+        try{
+            File fileOut = new File("reservations.txt");
+
+            FileOutputStream output = new FileOutputStream(fileOut);
+
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(output));
+
+            for(int i = 0; i < rooms.length; i++){
+                //    public Reservation(int arrayIndex, String userID, String startDate, String endDate)
+                for(int x = 0; x < rooms[i].getAllReservations().size(); x++){
+
+                    String temp = rooms[i].getAllReservations().get(x).getUserID() + "#" +
+                            rooms[i].getAllReservations().get(x).getRoomIndex() + "#" +
+                            rooms[i].getAllReservations().get(x).getStartDate() + "#" +
+                            rooms[i].getAllReservations().get(x).getEndDate();
+
+                    out.write(temp);
+                    out.newLine();
+
+                }
+
             }
+
+            out.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        catch (IOException IOE)
         {
-            System.out.println("IOException!");
+
         }
+
     }
 
     public String toString()
@@ -110,6 +165,6 @@ public class Hotel {
     public Room getRoom(int roomNum) {
     	return rooms[roomNum];
     }
-    
+
 
 }
