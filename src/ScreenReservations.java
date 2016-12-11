@@ -99,8 +99,6 @@ public class ScreenReservations extends JPanel{
 						/**
 						 * Delete Reservation here
 						 */
-						System.out.println(rooms.get(numberHolder).getRoomIndex());
-                        System.out.println(rooms.get(numberHolder).getStartDate());
 						view.getHotel().deleteReservation(rooms.get(numberHolder).getRoomIndex(),rooms.get(numberHolder).getStartDate());
                         gs.deleteReservation(rooms.get(numberHolder).getRoomIndex(),rooms.get(numberHolder).getStartDate());
 						temp.setVisible(false);

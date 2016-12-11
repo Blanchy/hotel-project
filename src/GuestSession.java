@@ -94,14 +94,23 @@ public class GuestSession implements User {
 	public void deleteReservation(int rn, String sd){
 		for(int i = 0; i < newRes.size(); i++){
 			if(newRes.get(i).getRoomIndex() == rn && newRes.get(i).getStartDate() == sd){
-				newRes.remove(i);
-				newRooms.remove(i);
+				if(newRes.size() > 0){
+					newRes.remove(i);
+				}
+				if(newRooms.size() > 0){
+					newRooms.remove(i);
+				}
+
 			}
 		}
 		for(int i = 0; i < allRes.size(); i++){
-			if(allRes.get(i).getRoomIndex() == rn && allRes.get(i).getStartDate() == sd){
+			if(allRes.get(i).getRoomIndex() == rn && allRes.get(i).getStartDate() == sd) {
+				if(allRes.size() > 0){
 				allRes.remove(i);
-				allRooms.remove(i);
+			}
+				if(allRooms.size() > 0) {
+					allRooms.remove(i);
+				}
 			}
 		}
 	}
