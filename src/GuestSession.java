@@ -4,7 +4,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * 
+ * Authors:
  * @author BlanchyPolangcos
  * @author ChristopherNavy
  * @author JonathanWong
@@ -37,6 +37,11 @@ public class GuestSession implements User {
 	private ArrayList<Reservation> allRes;
 	private ArrayList allRooms = new ArrayList();
 	
+	/**
+	 * Constructor for GuestSession
+	 * @param h Hotel under which Guest Session operates
+	 * @param id ID of guest user
+	 */
 	public GuestSession(Hotel h, String id) {
 		hotel = h;
 		this.id = id;
@@ -64,10 +69,12 @@ public class GuestSession implements User {
 	
 	/**
 	 * adds a new reservation to BOTH Reservation ArrayLists
-	 * but does not add it to the hotel itself yet.
+	 * as well as hotel
 	 * then notifies view.
 	 * 
 	 * @param roomNum index of array of rooms
+	 * precondition: room number is valid in array
+	 * postcondition: reservation added to room in that array index
 	 */
 	public void addReservation(int roomNum) {
 		Reservation r =  new Reservation(roomNum, id, startDate, endDate);
@@ -114,8 +121,10 @@ public class GuestSession implements User {
 	}
 
 	/**
-	 * 
-	 * @param date
+	 * sets start of potential reservation to this date
+	 * @param date starting date
+	 * precondition: starting date is correct format MM/DD/YYYY
+	 * postcondition: this becomes the new start date of reservation
 	 */
 	public void setStart(String date) {
 		startDate = date;
@@ -123,8 +132,10 @@ public class GuestSession implements User {
 	}
 	
 	/**
-	 * 
-	 * @param date
+	 * sets end of potential reservation to this date
+	 * @param date end date
+	 * precondition: date is correct format MM/DD/YYYY
+	 * postcondition: this becomes the new end date of reservation
 	 */
 	public void setEnd(String date) {
 		endDate = date;
@@ -132,25 +143,28 @@ public class GuestSession implements User {
 	}
 	
 	/**
-	 * 
-	 * @param p
+	 * sets price of potential room to this price
+	 * @param p price $200 or $80 depending on room
+	 * precondition: price is either 200 or 80
+	 * postcondition: this becomes the new price of the room
 	 */
 	public void setPrice(int p) {price = p;}
 	
 	/**
-	 * 
-	 * @return
+	 * gets start of reservation
+	 * @return start of reservation MM/DD/YYYY
 	 */
 	public String getStart() {return startDate;}
 	
 	/**
-	 * 
-	 * @return
+	 * gets end of reservation
+	 * @return end of reservation MM/DD/YYYY
 	 */
 	public String getEnd() {return endDate;}
 	
 	/**
-	 * 
+	 * gets ID of user in this session
+	 * @return ID of user
 	 */
 	public String getID() { return id;}
 	
@@ -164,6 +178,10 @@ public class GuestSession implements User {
 		return newRes;
 	}
 
+	/**
+	 * gets indexes of newly reserved rooms
+	 * @return indexes of reserved rooms
+	 */
 	public ArrayList<Integer> getNewRooms() {return newRooms;}
 
 	/**
@@ -183,13 +201,17 @@ public class GuestSession implements User {
 	
 	/**
 	 * clears newRes arraylist. called right before entering transaction screen.
+	 * precondition: arraylist.size > 0
+	 * postcondition: arraylist of new reservations is cleared
 	 */
 	public void eraseNewReservations() {
 		newRes.clear();
 	}
 	
 	/**
-	 * sets off changelistener and updates views
+	 * sets off changelistener and updates views.
+	 * precondition: arraylist of listeners has at least one element.
+	 * postcondition: all listeners are notified
 	 */
 	public void notifyView() {
 		for (ChangeListener l : listeners) {

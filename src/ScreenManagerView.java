@@ -398,7 +398,6 @@ public class ScreenManagerView extends JPanel {
 		JPanel jp = new JPanel();
 		jp.setLayout(new FlowLayout());
 		JTextArea roomInfo = new JTextArea();
-		roomInfo.setPreferredSize(textAreaSize);
 		roomInfo.setEditable(false);
 		
 		Room r = view.getHotel().getRoom(room);
