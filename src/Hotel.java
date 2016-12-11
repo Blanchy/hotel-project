@@ -15,6 +15,9 @@ public class Hotel {
 
     private Room[] rooms;
 
+    /**
+     * Constructor for Hotel 
+     **/
     public Hotel()
     {
         rooms = new Room[20];
