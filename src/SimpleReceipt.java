@@ -1,10 +1,13 @@
-/**
- * Created by chrisnavy on 11/24/16.
- */
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
+/**
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
+ **/
 public class SimpleReceipt implements ReceiptStrategy {
     private JFrame receiptFrame;
     private JPanel namePanel;

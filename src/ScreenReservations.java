@@ -11,6 +11,12 @@ import java.util.*;
 import javax.swing.*;
 
 
+/**
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
+ **/
 public class ScreenReservations extends JPanel{
 
 	HotelView view;

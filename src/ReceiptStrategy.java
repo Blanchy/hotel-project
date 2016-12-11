@@ -1,6 +1,9 @@
 /**
- * Created by chrisnavy on 11/24/16.
- */
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
+ **/
 public interface ReceiptStrategy {
 
     //userID

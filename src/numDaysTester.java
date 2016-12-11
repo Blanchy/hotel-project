@@ -1,5 +1,9 @@
 /**
- * Created by JonWong on 12/9/16.
+ *
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
  * Class just used to test various methods. feel free to ignore this class.
  */
 public class numDaysTester {

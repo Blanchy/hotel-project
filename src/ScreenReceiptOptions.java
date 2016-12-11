@@ -7,7 +7,12 @@ import javax.swing.*;
 
 /**
  * Allows receipt to be chosen between Simple and Comprehensive.
- */
+ *
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
+ **/
 public class ScreenReceiptOptions extends JPanel {
 
 	private HotelView view;

@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 
 /**
- * Created by JonWong on 11/7/16.
- */
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
+ **/
 public class Guest implements User{
 
     @Override

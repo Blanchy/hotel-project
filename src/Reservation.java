@@ -5,8 +5,11 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * Created by JonWong on 11/5/16.
- */
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
+ **/
 public class Reservation {
 	private int roomIndex;
     private String userID;

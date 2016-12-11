@@ -1,6 +1,9 @@
 /**
- * Created by chrisnavy on 12/9/16.
- */
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
+ **/
 public class ReceiptContext {
 
     private ReceiptStrategy strategy;

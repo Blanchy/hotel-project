@@ -4,8 +4,11 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * Created by JonWong on 11/5/16.
- */
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ *
+ **/
 public class Room {
     private int price; //price of room
     private int number; //room number
