@@ -9,13 +9,13 @@ import javax.swing.event.ChangeListener;
  * @author ChristopherNavy
  * @author JonathanWong
  *
- * Guest session which is created when a user enters their ID. 
+ * Guest session which is created when a user enters their ID.
  * Retrieves pre-existing reservations upon creation.
- * 
+ *
  * Stores reservations, pre-existing or newly created.
  * Stores preferred reservation dates and room type when looking
  * up vacant rooms.
- * 
+ *
  * Updates ScreenVacancies.java.
  * Sends data for receipt.
  * Sends data for ScreenReservations.
@@ -25,7 +25,7 @@ public class GuestSession implements User {
 	private Hotel hotel;
 	private String id;
 	private ArrayList<ChangeListener> listeners;
-	
+
 	private ArrayList<Reservation> newRes;
 	private ArrayList newRooms = new ArrayList();
 
@@ -33,10 +33,10 @@ public class GuestSession implements User {
 	private String startDate;
 	private String endDate;
 	private int price;
-	
+
 	private ArrayList<Reservation> allRes;
 	private ArrayList allRooms = new ArrayList();
-	
+
 	/**
 	 * Constructor for GuestSession
 	 * @param h Hotel under which Guest Session operates
@@ -45,11 +45,11 @@ public class GuestSession implements User {
 	public GuestSession(Hotel h, String id) {
 		hotel = h;
 		this.id = id;
-		
+
 		newRes = new ArrayList<Reservation>();
-		
+
 		allRes = new ArrayList<Reservation>();
-		
+
 		Room[] allRooms = hotel.getRooms();
 		for (Room r : allRooms) {
 			ArrayList<Reservation> allReservations = r.getAllReservations();
@@ -59,19 +59,19 @@ public class GuestSession implements User {
 				}
 			}
 		}
-		
-		
+
+
 		startDate = "";
 		endDate = "";
-		
+
 		listeners = new ArrayList<ChangeListener>();
 	}
-	
+
 	/**
 	 * adds a new reservation to BOTH Reservation ArrayLists
 	 * as well as hotel
 	 * then notifies view.
-	 * 
+	 *
 	 * @param roomNum index of array of rooms
 	 * precondition: room number is valid in array
 	 * postcondition: reservation added to room in that array index
@@ -100,16 +100,16 @@ public class GuestSession implements User {
 			}
 		}
 	}
-	
+
 	/**
 	 * gets AVAILABLE rooms for the startDate and endDate
 	 * @return vacant rooms
 	 */
 	public ArrayList<Room> getRooms() {
 		Room[] rooms = hotel.getRooms();
-		
+
 		ArrayList<Room> available = new ArrayList<Room>();
-		
+
 		for (Room r : rooms) {
 			if (r.getPrice() == this.price) {
 				if (r.isRoomAvailable(startDate, endDate)) {
@@ -130,7 +130,7 @@ public class GuestSession implements User {
 		startDate = date;
 		notifyView();
 	}
-	
+
 	/**
 	 * sets end of potential reservation to this date
 	 * @param date end date
@@ -141,7 +141,7 @@ public class GuestSession implements User {
 		endDate = date;
 		notifyView();
 	}
-	
+
 	/**
 	 * sets price of potential room to this price
 	 * @param p price $200 or $80 depending on room
@@ -149,29 +149,29 @@ public class GuestSession implements User {
 	 * postcondition: this becomes the new price of the room
 	 */
 	public void setPrice(int p) {price = p;}
-	
+
 	/**
 	 * gets start of reservation
 	 * @return start of reservation MM/DD/YYYY
 	 */
 	public String getStart() {return startDate;}
-	
+
 	/**
 	 * gets end of reservation
 	 * @return end of reservation MM/DD/YYYY
 	 */
 	public String getEnd() {return endDate;}
-	
+
 	/**
 	 * gets ID of user in this session
 	 * @return ID of user
 	 */
 	public String getID() { return id;}
-	
+
 	/**
-	 * retrieves the reservations made during a particular transaction. 
+	 * retrieves the reservations made during a particular transaction.
 	 * used in Simple Receipt.
-	 * 
+	 *
 	 * @return arraylist of new reservations
 	 */
 	public ArrayList<Reservation> getNewReservations() {
@@ -198,7 +198,7 @@ public class GuestSession implements User {
 	 * @return all the rooms that were reserved.
 	 */
 	public ArrayList<Integer> getAllRooms() {return allRooms;}
-	
+
 	/**
 	 * clears newRes arraylist. called right before entering transaction screen.
 	 * precondition: arraylist.size > 0
@@ -206,8 +206,9 @@ public class GuestSession implements User {
 	 */
 	public void eraseNewReservations() {
 		newRes.clear();
+		newRooms.clear();
 	}
-	
+
 	/**
 	 * sets off changelistener and updates views.
 	 * precondition: arraylist of listeners has at least one element.
@@ -218,7 +219,7 @@ public class GuestSession implements User {
 			l.stateChanged(new ChangeEvent(this));
 		}
 	}
-	
+
 	/**
 	 * attach changelisteners
 	 * @param l changelistener to be added
@@ -226,5 +227,5 @@ public class GuestSession implements User {
 	public void attach(ChangeListener l) {
 		listeners.add(l);
 	}
-	
+
 }

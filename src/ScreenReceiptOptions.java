@@ -5,10 +5,18 @@ import java.util.*;
 
 import javax.swing.*;
 
+/**
+ * Allows receipt to be chosen between Simple and Comprehensive.
+ */
 public class ScreenReceiptOptions extends JPanel {
 
 	private HotelView view;
 
+    /**
+     * Constructor for Receipt Options
+     * @param v JFrame Component of the Program
+     * @param gs User Session Information.
+     */
 	public ScreenReceiptOptions(HotelView v, GuestSession gs) {
 		view  = v;
 
@@ -25,15 +33,22 @@ public class ScreenReceiptOptions extends JPanel {
 		JButton menu = new JButton("Back to Guest menu");
 
 
+        /**
+         * Brings User back to the main menu.
+         */
 		menu.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 view.changeScreen(new ScreenGuestOptions(view));
+                gs.eraseNewReservations();
             }
         });
 
 
+        /**
+         * Creates a new window with a receipt formatted with simple receipt.
+         */
 		simple.addActionListener(new ActionListener() {
 
 			@Override
@@ -49,7 +64,11 @@ public class ScreenReceiptOptions extends JPanel {
 			}
 
 		});
-		comprehensive.addActionListener(new ActionListener() {
+
+        /**
+         * Creates a new window with a receipt formatted with comprehensive receipt.
+         */
+        comprehensive.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -64,7 +83,7 @@ public class ScreenReceiptOptions extends JPanel {
 			}
 
 		});
-		
+
 		add(option);
 		add(simple);
 		add(comprehensive);
