@@ -138,36 +138,6 @@ public class GuestSession implements User {
 		notifyView();
 	}
 
-	@Override
-	public void loadReservations() {
-
-	}
-
-	@Override
-	public void viewInformation() {
-
-	}
-
-	@Override
-	public void saveReservations() {
-
-	}
-
-	@Override
-	public void addReservation() {
-
-	}
-
-	@Override
-	public String viewReservation() {
-		return null;
-	}
-
-	@Override
-	public void deleteReservation() {
-
-	}
-
 	/**
 	 * sets start of potential reservation to this date
 	 * @param date starting date

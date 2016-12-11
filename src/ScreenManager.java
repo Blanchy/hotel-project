@@ -10,16 +10,22 @@ import java.awt.event.ActionListener;
  * @author BlanchyPolangcos
  * @author ChristopherNavy
  * @author JonathanWong
- *
+ * 
+ * Window for a manager user to Load reservations from a file, view reservations, save reservations
+ * to file, or quit the system.
  **/
 public class ScreenManager extends JPanel {
 
 
 	private HotelView view;
 
+	/**
+	 * Constructor for classes of this object.
+	 * @param v HotelView object upon which this JPanel is mounted.
+	 */
 	public ScreenManager(HotelView v) {
 		this.view = v;
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new GridLayout(0,1));
 
 		JLabel manageOption = new JLabel("Manager Options:", SwingConstants.CENTER);
 		JButton load = new JButton("Load"); // add pop-up confirming successful load

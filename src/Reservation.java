@@ -1,4 +1,3 @@
-// import sun.tools.tree.GreaterOrEqualExpression;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -9,6 +8,7 @@ import java.util.GregorianCalendar;
  * @author ChristopherNavy
  * @author JonathanWong
  *
+ * A reservation containing an index, user ID, and dates to start and end.
  **/
 public class Reservation {
 	private int roomIndex;

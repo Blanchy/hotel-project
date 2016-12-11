@@ -3,6 +3,7 @@
  * @author ChristopherNavy
  * @author JonathanWong
  *
+ * Context for receipt using Strategy method
  **/
 public class ReceiptContext {
 

@@ -24,6 +24,10 @@ public class ManagerSession implements User {
 	private GregorianCalendar cal;
 	private int[] currentDate;
 	
+	/**
+	 * constructor method
+	 * @param h Hotel object to retrieve information from
+	 */
 	public ManagerSession(Hotel h) {
 		hotel = h;
 		listeners = new ArrayList<ChangeListener>();
@@ -35,45 +39,14 @@ public class ManagerSession implements User {
 		currentDate[2] = cal.get(Calendar.YEAR);
 	}
 
+	/**
+	 * gets all rooms of hotel
+	 * @return all hotel rooms
+	 */
 	@Override
 	public ArrayList<Room> getRooms() {
 		ArrayList<Room> roomList = (ArrayList<Room>) Arrays.asList(hotel.getRooms());
 		return roomList;
-	}
-
-	
-	/**
-	 * sets the current date being viewed
-	 */
-
-	@Override
-	public void loadReservations() {
-
-	}
-
-	@Override
-	public void viewInformation() {
-
-	}
-
-	@Override
-	public void saveReservations() {
-
-	}
-
-	@Override
-	public void addReservation() {
-
-	}
-
-	@Override
-	public String viewReservation() {
-		return null;
-	}
-
-	@Override
-	public void deleteReservation() {
-
 	}
 
 	/**
@@ -94,14 +67,32 @@ public class ManagerSession implements User {
 		notifyViews();
 	}
 	
+	/**
+	 * gets current date for view
+	 * @return current date as array in {MM,DD,YYYY}
+	 */
 	public int[] getCurrentDate() { return currentDate; }
 	
+	/**
+	 * gets current room being viewed
+	 * @return index of current room being viewed
+	 */
 	public int getCurrentRoom() { return currentRoom; }
 	
+	/**
+	 * attaches a ChangeListener to this model
+	 * precondition: l is a ChangeListener
+	 * postcondition: l is added to arrayList of ChangeListeners
+	 */
 	public void attach(ChangeListener l) {
 		listeners.add(l);
 	}
 	
+	/**
+	 * notifies ChangeListeners to change views
+	 * precondition: arrayList of listeners contains ChangeListeners
+	 * postcondition: listeners are notified
+	 */
 	public void notifyViews() {
 		for (ChangeListener l : listeners) {
 			l.stateChanged(new ChangeEvent(this));
