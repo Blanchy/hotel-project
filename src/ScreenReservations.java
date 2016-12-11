@@ -42,7 +42,7 @@ public class ScreenReservations extends JPanel{
 		ArrayList<Reservation> rooms = ((GuestSession) view.getUserSession()).getAllReservations();
 
 		setLayout(new GridLayout(0,1));
-        
+
         if(rooms.size() == 0){
             JPanel temp = new ScreenReservationView("No Rooms Reserved", "No Dates Reserved");
             add(temp);
@@ -77,7 +77,10 @@ public class ScreenReservations extends JPanel{
 						/**
 						 * Delete Reservation here
 						 */
+						System.out.println(rooms.get(numberHolder).getRoomIndex());
+                        System.out.println(rooms.get(numberHolder).getStartDate());
 						view.getHotel().deleteReservation(rooms.get(numberHolder).getRoomIndex(),rooms.get(numberHolder).getStartDate());
+                        gs.deleteReservation(rooms.get(numberHolder).getRoomIndex(),rooms.get(numberHolder).getStartDate());
 						temp.setVisible(false);
 					}
 

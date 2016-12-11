@@ -78,6 +78,21 @@ public class GuestSession implements User {
 		allRooms.add(r.getRoomIndex());
 		notifyView();
 	}
+
+	public void deleteReservation(int rn, String sd){
+		for(int i = 0; i < newRes.size(); i++){
+			if(newRes.get(i).getRoomIndex() == rn && newRes.get(i).getStartDate() == sd){
+				newRes.remove(i);
+				newRooms.remove(i);
+			}
+		}
+		for(int i = 0; i < allRes.size(); i++){
+			if(allRes.get(i).getRoomIndex() == rn && allRes.get(i).getStartDate() == sd){
+				allRes.remove(i);
+				allRooms.remove(i);
+			}
+		}
+	}
 	
 	/**
 	 * gets AVAILABLE rooms for the startDate and endDate

@@ -61,6 +61,7 @@ public class Hotel {
     	}
     	*/
     	rooms[roomIndex].deleteReservation(reservationStartDate);
+        System.out.println(rooms);
     	/* assuming roomIndex goes 0-19 */
     }
 

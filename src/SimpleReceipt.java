@@ -30,8 +30,13 @@ public class SimpleReceipt implements ReceiptStrategy {
         reservedRoomsPanel = new JPanel();
         totalDuesPanel = new JPanel();
 
-        userIDPanel.add(new JLabel("User ID: "));
-        userIDPanel.add(new JTextArea(info.get(0).toString()));
+        reservedRoomsPanel.setLayout(new GridLayout(0,1));
+
+
+        JTextArea userID = new JTextArea(info.get(0).toString());
+        userID.setEditable(false);
+
+        userIDPanel.add(userID);
 
         reservedRoomsPanel.add(new JLabel("Rooms that are going to be Reserved: "));
 
@@ -40,7 +45,9 @@ public class SimpleReceipt implements ReceiptStrategy {
         rooms = (ArrayList<Reservation>) info.get(1);
 
         for(int i = 0; i < reserved.size(); i++){
-            reservedRoomsPanel.add(new JTextArea(Integer.toString(reserved.get(i) + 1)  + ": " + rooms.get(i).toString() ));
+            JTextArea rm = new JTextArea(Integer.toString(reserved.get(i) + 1)  + ": " + rooms.get(i).toString() );
+            rm.setEditable(false);
+            reservedRoomsPanel.add(rm);
         }
 
         totalDuesPanel.add(new JLabel("Total Dues: "));

@@ -2,6 +2,7 @@
  * Created by chrisnavy on 11/24/16.
  */
 import javax.swing.*;
+import java.awt.*;
 import java.util.*;
 
 public class ComprehensiveReceipt implements ReceiptStrategy {
@@ -12,10 +13,8 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
     private JPanel totalDuesPanel;
 
     private int totalDue;
-    String name;
     private ArrayList<Reservation> rooms;
     private ArrayList<Integer> reserved;
-    String userID;
 
     ComprehensiveReceipt(ArrayList info){
 
@@ -28,8 +27,15 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
         reservedRoomsPanel = new JPanel();
         totalDuesPanel = new JPanel();
 
+        reservedRoomsPanel.setLayout(new GridLayout(0,1));
+
+
         userIDPanel.add(new JLabel("User ID: "));
-        userIDPanel.add(new JTextArea(info.get(0).toString()));
+
+        JTextArea userID = new JTextArea(info.get(0).toString());
+        userID.setEditable(false);
+
+        userIDPanel.add(userID);
 
         reservedRoomsPanel.add(new JLabel("Rooms reserved: "));
 
@@ -38,7 +44,10 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
         rooms = (ArrayList<Reservation>) info.get(1);
 
         for(int i = 0; i < reserved.size(); i++){
-            reservedRoomsPanel.add(new JTextArea(Integer.toString(reserved.get(i) + 1)  + ": " + rooms.get(i).toString() ));
+            JTextArea rm = new JTextArea(Integer.toString(reserved.get(i) + 1)  + ": " + rooms.get(i).toString() );
+            rm.setEditable(false);
+
+            reservedRoomsPanel.add(rm);
         }
 
         totalDuesPanel.add(new JLabel("Total Dues: "));
@@ -64,12 +73,12 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
 
     @Override
     public void getUserID() {
-        userID = "001";
+
     }
 
     @Override
     public void getName() {
-        name = "Bob";
+
     }
 
     @Override

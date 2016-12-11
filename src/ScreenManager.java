@@ -40,8 +40,10 @@ public class ScreenManager extends JPanel {
 		load.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				/*
 				System.out.println(null, "Reservations loaded from file.", "Message", 
 						JOptionPane.INFORMATION_MESSAGE);
+						*/
 			}
 		});
 
