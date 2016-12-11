@@ -126,7 +126,7 @@ public class Reservation {
 
     public String toString()
     {
-        String rtn = userID + "has reserved from " + startDate + " to " + endDate +
+        String rtn = userID + " has reserved from " + startDate + " to " + endDate +
         ". Length of stay: " + getNumberOfDays(startDate, endDate);
         return rtn; 
     }

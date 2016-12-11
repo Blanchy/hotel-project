@@ -115,7 +115,7 @@ public class ScreenVacancies extends JPanel {
 				for (Reservation r : newRes) {
 					view.getHotel().addReservation(r);
 				}
-				view.changeScreen(new ScreenReceiptOptions(view));
+				view.changeScreen(new ScreenReceiptOptions(view, gs));
 			}
 		});
 		
