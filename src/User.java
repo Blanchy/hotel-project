@@ -1,15 +1,16 @@
 import java.util.ArrayList;
 
-
-public interface User {
-	public ArrayList<Room> getRooms();
 /**
- * Created by JonWong on 11/7/16.
+ * Authors:
+ * @author BlanchyPolangcos
+ * @author ChristopherNavy
+ * @author JonathanWong
+ * 
+ * User interface for HotelView GUI.
  */
-    public void loadReservations();
-    public void viewInformation();
-    public void saveReservations();
-    public void addReservation();
-    public String viewReservation();
-    public void deleteReservation();
+public interface User {
+	/**
+	 * @return rooms of hotel
+	 */
+	public ArrayList<Room> getRooms();
 }

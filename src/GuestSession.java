@@ -134,36 +134,6 @@ public class GuestSession implements User {
 		return available;
 	}
 
-	@Override
-	public void loadReservations() {
-
-	}
-
-	@Override
-	public void viewInformation() {
-
-	}
-
-	@Override
-	public void saveReservations() {
-
-	}
-
-	@Override
-	public void addReservation() {
-
-	}
-
-	@Override
-	public String viewReservation() {
-		return null;
-	}
-
-	@Override
-	public void deleteReservation() {
-
-	}
-
 	/**
 	 * sets start and end dates of potential reservation to these dates
 	 * @param start starting date
