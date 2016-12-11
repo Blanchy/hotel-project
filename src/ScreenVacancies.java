@@ -59,7 +59,6 @@ public class ScreenVacancies extends JPanel {
 		confirm.addActionListener(new ActionListener() {
 
 			@Override
-
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int roomNum = Integer.parseInt(enterRoom.getText());
@@ -105,16 +104,13 @@ public class ScreenVacancies extends JPanel {
 			}
 		});
 		
-		/*
-		 * updates Hotel with the new reservations
-		 */
 		done.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Reservation> newRes = ((GuestSession) view.getUserSession()).getNewReservations();
-				for (Reservation r : newRes) {
-					view.getHotel().addReservation(r);
-				}
+//				ArrayList<Reservation> newRes = ((GuestSession) view.getUserSession()).getNewReservations();
+//				for (Reservation r : newRes) {
+//					view.getHotel().addReservation(r);
+//				}
 				view.changeScreen(new ScreenReceiptOptions(view, gs));
 			}
 		});

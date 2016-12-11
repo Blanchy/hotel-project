@@ -71,6 +71,7 @@ public class GuestSession implements User {
 	 */
 	public void addReservation(int roomNum) {
 		Reservation r =  new Reservation(roomNum, id, startDate, endDate);
+		hotel.addReservation(r);
 		newRes.add(r);
 		newRooms.add(r.getRoomIndex());
 		allRes.add(r);
