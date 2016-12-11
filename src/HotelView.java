@@ -45,10 +45,6 @@ public class HotelView {
 		frame.setVisible(true);
 	}
 
-	public static void main(String[] args) {
-		HotelView tester = new HotelView(new Hotel());
-	}
-
 	public void changeScreen(JPanel jp) {
 		
 		frame.setContentPane(jp);
