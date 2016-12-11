@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * @author BlanchyPolangcos
@@ -10,6 +11,7 @@ import java.io.*;
 public class Hotel {
 
     private Room[] rooms;
+    private String fileName = "load/Reservations";
 
     /**
      /** Constructor for Hotel
@@ -61,30 +63,75 @@ public class Hotel {
     	/* assuming roomIndex goes 0-19 */
     }
 
-    /**
-     * Loads reservation data from a text file.
-     */
     public void loadReservations()
     {
+        try{
+            File file = new File("reservations.txt");
 
+            if (file.exists()) {
+                String temp = "";
+                ArrayList<String> temp = new ArrayList<String>();
+                FileInputStream fin = new FileInputStream(file);
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(fin));
+
+                String buffer = null;
+
+                while ((buffer = reader.readLine()) != null) {
+                    temp.add(buffer);
+                }
+
+                for(int y = 0; y < temp.size(); y++){
+                    String[] load = temp.get(y).split("#");
+                    addReservation(new Reservation(Integer.parseInt(load[1]), load[0], load[2], load[3]));
+                }
+
+            } else {
+                System.out.println("This is the first time running, so there's nothing to load.");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public void saveReservations() {
 
-    /**
-     * Saves all reservation data to a text file, "reservations.txt"
-     */
-    public void saveReservations()
-    {
-        try {
-            PrintWriter writer = new PrintWriter("reservations.txt");
-            for (Room r : rooms) {
-                writer.println(r.toString());
+
+        try{
+            File fileOut = new File("reservations.txt");
+
+            FileOutputStream output = new FileOutputStream(fileOut);
+
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(output));
+
+            for(int i = 0; i < rooms.length; i++){
+                //    public Reservation(int arrayIndex, String userID, String startDate, String endDate)
+                for(int x = 0; x < rooms[i].getAllReservations().size(); x++){
+
+                    String temp = rooms[i].getAllReservations().get(x).getUserID() + "#" +
+                            rooms[i].getAllReservations().get(x).getRoomIndex() + "#" +
+                            rooms[i].getAllReservations().get(x).getStartDate() + "#" +
+                            rooms[i].getAllReservations().get(x).getEndDate();
+
+                    out.write(temp);
+                    out.newLine();
+
+                }
             }
+
+            out.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        catch (IOException IOE)
         {
-            System.out.println("IOException!");
+
         }
+
     }
 
     /**
@@ -117,30 +164,5 @@ public class Hotel {
     public Room getRoom(int roomNum) {
     	return rooms[roomNum];
     }
-
-
-
-    /*
-    public static void main(String[] args)
-    {
-        int rows = 4;
-        int columns = 5;
-        int [][] hotel = new int[rows][columns];
-
-        System.out.println("Signifies rooms. 1-10 are luxury, 11-20 are economy");
-        int count = 1;
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                hotel[i][j] = count;
-                System.out.print("[" + hotel[i][j] + "] ");
-                count++;
-            }
-            System.out.println();
-        }
-    }
-    */
-
 
 }

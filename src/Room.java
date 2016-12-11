@@ -76,15 +76,15 @@ public class Room {
     public boolean isRoomAvailable(String date1, String date2) {
     	String[] dateArray1 = date1.split("/");
     	String[] dateArray2 = date2.split("/");
-    	
-    	Calendar start = new GregorianCalendar(Integer.parseInt(dateArray1[2]), 
+
+    	Calendar start = new GregorianCalendar(Integer.parseInt(dateArray1[2]),
     			Integer.parseInt(dateArray1[0])-1, Integer.parseInt(dateArray1[1]));
     	start.clear(Calendar.HOUR);
         start.clear(Calendar.MINUTE);
         start.clear(Calendar.SECOND);
         start.clear(Calendar.MILLISECOND);
         //System.out.println("start cal: " + start.getTime());
-    	Calendar end = new GregorianCalendar(Integer.parseInt(dateArray2[2]), 
+    	Calendar end = new GregorianCalendar(Integer.parseInt(dateArray2[2]),
     			Integer.parseInt(dateArray2[0])-1, Integer.parseInt(dateArray2[1]));
         //System.out.println("end cal: " + end.getTime());
     	end.clear(Calendar.HOUR);
@@ -102,7 +102,7 @@ public class Room {
     		}
     		start.add(Calendar.DATE, 1);
     	}
-    	
+
     	return true;
     }
 
