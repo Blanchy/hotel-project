@@ -68,7 +68,7 @@ public class ScreenManager extends JPanel {
 			}
 		});
 		
-		menu.addActionListener(new ActionListener() {
+		menu.addActionListener(new ActionListener() { 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.changeScreen(new ScreenInitial(view));
