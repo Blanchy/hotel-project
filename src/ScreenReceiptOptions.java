@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
 
 import javax.swing.*;
 
@@ -8,25 +9,45 @@ public class ScreenReceiptOptions extends JPanel {
 
 	private HotelView view;
 
-	public ScreenReceiptOptions(HotelView v) {
+	public ScreenReceiptOptions(HotelView v, GuestSession gs) {
 		view  = v;
 
 		setPreferredSize(new Dimension(200,300));
+<<<<<<< HEAD
 		setLayout(new GridLayout(4,1));
+=======
+		setLayout(new GridLayout(0,1));
+>>>>>>> branch 'master' of https://github.com/jonlikesapples/hotel-project.git
 
 		JLabel option = new JLabel("Choose format of reciept:",SwingConstants.CENTER);
 		JButton simple = new JButton("Simple");
 		JButton comprehensive = new JButton("Comprehensive");
+<<<<<<< HEAD
 		JButton back = new JButton("Return to Menu");
+=======
+		JButton menu = new JButton("Back to Guest menu");
+
+
+		menu.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.changeScreen(new ScreenGuestOptions(view));
+            }
+        });
+>>>>>>> branch 'master' of https://github.com/jonlikesapples/hotel-project.git
 
 		simple.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				//view.getUserSession().getNewReservations();
+                ArrayList guestInfo = new ArrayList();
+                guestInfo.add(gs.getID());
+                guestInfo.add(gs.getAllReservations());
+                guestInfo.add(gs.getNewRooms());
 
-				ReceiptContext context = new ReceiptContext(new SimpleReceipt());
+				ReceiptContext context = new ReceiptContext(new SimpleReceipt(guestInfo));
 
 			}
 
@@ -36,8 +57,12 @@ public class ScreenReceiptOptions extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				//view.getUserSession().getReservations();
-				ReceiptContext context = new ReceiptContext(new ComprehensiveReceipt());
+                ArrayList guestInfo = new ArrayList();
+                guestInfo.add(gs.getID());
+                guestInfo.add(gs.getAllReservations());
+                guestInfo.add(gs.getAllRooms());
+
+				ReceiptContext context = new ReceiptContext(new ComprehensiveReceipt(guestInfo));
 
 			}
 
@@ -52,6 +77,10 @@ public class ScreenReceiptOptions extends JPanel {
 		add(option);
 		add(simple);
 		add(comprehensive);
+<<<<<<< HEAD
 		add(back);
+=======
+        add(menu);
+>>>>>>> branch 'master' of https://github.com/jonlikesapples/hotel-project.git
 	}
 }

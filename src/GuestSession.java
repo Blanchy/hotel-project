@@ -27,11 +27,15 @@ public class GuestSession implements User {
 	private ArrayList<ChangeListener> listeners;
 	
 	private ArrayList<Reservation> newRes;
+	private ArrayList newRooms = new ArrayList();
+
+
 	private String startDate;
 	private String endDate;
 	private int price;
 	
 	private ArrayList<Reservation> allRes;
+	private ArrayList allRooms = new ArrayList();
 	
 	public GuestSession(Hotel h, String id) {
 		hotel = h;
@@ -68,7 +72,9 @@ public class GuestSession implements User {
 	public void addReservation(int roomNum) {
 		Reservation r =  new Reservation(roomNum, id, startDate, endDate);
 		newRes.add(r);
+		newRooms.add(r.getRoomIndex());
 		allRes.add(r);
+		allRooms.add(r.getRoomIndex());
 		notifyView();
 	}
 	
@@ -141,7 +147,9 @@ public class GuestSession implements User {
 	public ArrayList<Reservation> getNewReservations() {
 		return newRes;
 	}
-	
+
+	public ArrayList<Integer> getNewRooms() {return newRooms;}
+
 	/**
 	 * retrieves ALL reservations made under the user ID. used in Comprehensive receipt
 	 * @return all reservations
@@ -149,6 +157,13 @@ public class GuestSession implements User {
 	public ArrayList<Reservation> getAllReservations() {
 		return allRes;
 	}
+
+
+	/**
+	 * retrieves all rooms reserved by the user.
+	 * @return all the rooms that were reserved.
+	 */
+	public ArrayList<Integer> getAllRooms() {return allRooms;}
 	
 	/**
 	 * clears newRes arraylist. called right before entering transaction screen.

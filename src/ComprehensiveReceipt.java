@@ -13,36 +13,39 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
 
     private int totalDue;
     String name;
-    private ArrayList<String> rooms;
+    private ArrayList<Reservation> rooms;
+    private ArrayList<Integer> reserved;
     String userID;
 
-    ComprehensiveReceipt(){
+    ComprehensiveReceipt(ArrayList info){
 
         this.getRooms();
 
-        receiptFrame = new JFrame("Comprehensive Receipt");
-        receiptFrame.setSize(400,400);
+        receiptFrame = new JFrame("Simple Receipt");
 
         namePanel = new JPanel();
         userIDPanel = new JPanel();
         reservedRoomsPanel = new JPanel();
         totalDuesPanel = new JPanel();
 
-        this.getName();
-        namePanel.add(new JLabel("Name: "));
-        namePanel.add(new JTextArea(name));
-
-        this.getUserID();
         userIDPanel.add(new JLabel("User ID: "));
-        userIDPanel.add(new JTextArea(userID));
+        userIDPanel.add(new JTextArea(info.get(0).toString()));
 
-        reservedRoomsPanel.add(new JLabel("Rooms Reserved: "));
-        reservedRoomsPanel.add(new JTextArea(rooms.toString()));
+        reservedRoomsPanel.add(new JLabel("Rooms reserved: "));
+
+
+        reserved = (ArrayList<Integer>) info.get(2);
+        rooms = (ArrayList<Reservation>) info.get(1);
+
+        for(int i = 0; i < reserved.size(); i++){
+            reservedRoomsPanel.add(new JTextArea(Integer.toString(reserved.get(i) + 1)  + ": " + rooms.get(i).toString() ));
+        }
 
         totalDuesPanel.add(new JLabel("Total Dues: "));
         this.getTotalDues();
         totalDuesPanel.add(new JLabel("$" + Integer.toString(totalDue)));
         this.printReceipt();
+
 
     }
 
@@ -55,6 +58,7 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
         receiptFrame.add(reservedRoomsPanel);
         receiptFrame.add(totalDuesPanel);
 
+        receiptFrame.pack();
         receiptFrame.setVisible(true);
     }
 
@@ -70,23 +74,16 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
 
     @Override
     public void getRooms() {
-        rooms = new ArrayList<>();
 
-        rooms.add("E8");
-        rooms.add("L4");
-        rooms.add("E2");
-        rooms.add("L5");
-        rooms.add("L9");
-        rooms.add("E1");
     }
 
     @Override
     public void getTotalDues() {
-        for(int i = 0; i < rooms.size(); i++){
-            String temp = Character.toString(rooms.get(i).charAt(0));
-            if(temp.equals("E")){
+        for(int i = 0; i < reserved.size(); i++){
+            int temp = reserved.get(i);
+            if(temp >= 10){
                 totalDue += 80;
-            } else if(temp.equals("L")){
+            } else if(temp < 10){
                 totalDue += 200;
             }
         }

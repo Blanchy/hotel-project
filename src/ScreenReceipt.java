@@ -11,7 +11,7 @@ public class ScreenReceipt extends JPanel {
 		view = v;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		JTextArea receipt = new JTextArea("Formatted reciept printed here");
+		JTextArea receipt = new JTextArea("Formatted receipt printed here");
 		JButton menu = new JButton("Return to Guest Menu");
 
 		menu.addActionListener(new ActionListener() {
