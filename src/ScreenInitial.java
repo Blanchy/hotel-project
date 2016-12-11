@@ -22,6 +22,8 @@ public class ScreenInitial extends JPanel {
 	 */
 	public ScreenInitial(HotelView v) {
 
+		v.getHotel().loadReservations();
+
 		view = v;
 
 		setLayout(new GridLayout(3,1));

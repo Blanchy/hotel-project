@@ -56,6 +56,7 @@ public class ScreenGuestOptions extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 
+				view.getHotel().saveReservations();
 				view.changeScreen(new ScreenInitial(view));
 
 			}
