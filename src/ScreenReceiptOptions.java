@@ -69,8 +69,6 @@ public class ScreenReceiptOptions extends JPanel {
 		add(simple);
 		add(comprehensive);
 
-		add(back);
-
         add(menu);
 
 	}

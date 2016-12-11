@@ -20,7 +20,7 @@ public class ScreenManager extends JPanel {
 		JButton vw = new JButton("View");
 		JButton save = new JButton("Save"); // add pop-up confirming successful save
 		JButton quit = new JButton("Quit");
-
+		JButton menu = new JButton("Sign out manager");
 		
 		vw.addActionListener(new ActionListener() {
 			@Override
@@ -40,15 +40,24 @@ public class ScreenManager extends JPanel {
 		load.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("load was pressed.");
+				System.out.println(null, "Reservations loaded from file.", "Message", 
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
 		save.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("save was pressed.");
+				JOptionPane.showMessageDialog(null, "Reservations saved to file.", "Message", 
+						JOptionPane.INFORMATION_MESSAGE);
 				view.getHotel().saveReservations();
+			}
+		});
+		
+		menu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				view.changeScreen(new ScreenInitial(view));
 			}
 		});
 
@@ -56,6 +65,7 @@ public class ScreenManager extends JPanel {
 		add(load);
 		add(vw);
 		add(save);
+		add(menu);
 		add(quit);
 	}
 
