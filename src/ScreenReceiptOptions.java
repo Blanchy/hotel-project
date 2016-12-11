@@ -19,7 +19,7 @@ public class ScreenReceiptOptions extends JPanel {
 		setLayout(new GridLayout(0,1));
 
 
-		JLabel option = new JLabel("Choose format of reciept:",SwingConstants.CENTER);
+		JLabel option = new JLabel("Choose format of receipt:",SwingConstants.CENTER);
 		JButton simple = new JButton("Simple");
 		JButton comprehensive = new JButton("Comprehensive");
 		JButton menu = new JButton("Back to Guest menu");
@@ -68,8 +68,6 @@ public class ScreenReceiptOptions extends JPanel {
 		add(option);
 		add(simple);
 		add(comprehensive);
-
-		add(back);
 
         add(menu);
 
