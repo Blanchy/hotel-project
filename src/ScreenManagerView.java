@@ -21,6 +21,10 @@ import javax.swing.event.ChangeListener;
  * @author ChristopherNavy
  * @author JonathanWong
  *
+ *A JPanel which switches from either a Month view or Room view.
+ *The Month view draws a clickable calendar and shows a list of reserved and vacant rooms
+ *for the chosen date. Room view draws a clickable list of all rooms and shows reservation
+ *information for a chosen room.
  **/
 
 enum MONTHS
@@ -39,6 +43,10 @@ public class ScreenManagerView extends JPanel {
 	MONTHS[] monthArray;
 	boolean viewMode; /* false if on room view, true if on month view */
 	
+	/**
+	 * Constructor for ScreenManagerView, initializes at Room view.
+	 * @param v the hotelview JFrame within which this object is drawn.
+	 **/
 	public ScreenManagerView(HotelView v) {
 		view = v;
 		ms = (ManagerSession) view.getUserSession();
@@ -120,6 +128,11 @@ public class ScreenManagerView extends JPanel {
 		repaint();
 	}
 	
+	/**
+	 * draws the room view in which there is a clickable list of rooms
+	 * and info for a selected room
+	 * @param room the room number selected
+	 */
 	public void drawRoomView(int room) {
 		body.removeAll();
 		body.repaint();
@@ -141,11 +154,12 @@ public class ScreenManagerView extends JPanel {
 	 * @return Jpanel containing clickable calendar
 	 */
 	public JPanel drawMonth(int[] date) {
-		Calendar current = new GregorianCalendar(date[2], date[1], date[0]);
+		Calendar current = new GregorianCalendar(date[2], date[0], date[1]); // [MM, DD, YYYY]
 		
 		JPanel calendar = new JPanel();
 		calendar.setLayout(new BorderLayout());
 		
+		/* can navigate by month or year */
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new GridLayout(1,5));
 		JButton backYear = new JButton("<<");
@@ -156,16 +170,19 @@ public class ScreenManagerView extends JPanel {
 		
 		JPanel calBody = new JPanel();
 		calBody.setLayout(new BorderLayout());
-		calBody.add(new JLabel(monthArray[current.get((Calendar.MONTH) +1)] + " " + current.get(Calendar.YEAR),
+		calBody.add(new JLabel(monthArray[current.get(Calendar.MONTH)] + " " + current.get(Calendar.YEAR),
 				SwingConstants.CENTER), BorderLayout.NORTH);
 		
 		JPanel calGrid = new JPanel();
-		calGrid.setLayout(new GridLayout(7,7));
+		calGrid.setLayout(new GridLayout(0,7));
 
 		String[] boxes = getCalGrid(date);
 
+		JLabel[] labels = new JLabel[boxes.length];
+		
 		for (int i = 0; i <= boxes.length - 1; i++) { 
-			JLabel day = new JLabel(boxes[i], SwingConstants.CENTER);
+			JLabel day = new JLabel(boxes[i]);
+			System.out.println(day.getText());
 			try {
 				if (Integer.parseInt(day.getText()) == current.get(Calendar.DATE)) {
 					day.setForeground(Color.RED);
@@ -178,6 +195,7 @@ public class ScreenManagerView extends JPanel {
 							int year = current.get(Calendar.YEAR);
 							int month = current.get(Calendar.MONTH);
 							int date = Integer.parseInt(day.getText());
+							System.out.println(day.getText() + " " + month + " " + year);
 							ms.setCurrentDate(new int[]{month, date, year});
 						}
 						@Override
@@ -194,8 +212,12 @@ public class ScreenManagerView extends JPanel {
 			catch (NumberFormatException n) {
 				//do nothing
 			}
-			calGrid.add(day, SwingConstants.CENTER);
+			labels[i] = day;
 		} 
+		
+		for (JLabel jl : labels) {
+			calGrid.add(jl, SwingConstants.CENTER);
+		}
 		
 		backYear.addActionListener(new ActionListener() {
 			@Override
@@ -253,7 +275,7 @@ public class ScreenManagerView extends JPanel {
 		monthInfo.setPreferredSize(textAreaSize);
 		monthInfo.setEditable(false);
 		
-		String monthInfoText = "Rooms on " + date[0] + "/" + date[1] + "/" + date[2] + "\n";
+		String monthInfoText = "Rooms on " + (date[0]+1) + "/" + date[1] + "/" + date[2] + "\n";
 		String vacantText = "Vacant on this day: \n";
 		String reservedText = "Reserved on this day: \n";
 		
@@ -392,7 +414,7 @@ public class ScreenManagerView extends JPanel {
 		calendarGrid[5] = "Fr";
 		calendarGrid[6] = "Sa";
 
-		GregorianCalendar temp = new GregorianCalendar(date[2], date[1], date[0]);
+		GregorianCalendar temp = new GregorianCalendar(date[2], date[1] - 1, date[0]);
 		temp.set(Calendar.DATE, temp.getActualMinimum(Calendar.DAY_OF_MONTH));
 		
 		int blanks = temp.get(Calendar.DAY_OF_WEEK) - 1;
