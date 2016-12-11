@@ -9,12 +9,17 @@ import javax.swing.*;
  * @author ChristopherNavy
  * @author JonathanWong
  *
+ * Window for a Guest to sign in or sign up with their user ID.
  **/
 
 public class ScreenGuest extends JPanel {
 
 	private HotelView view;
 	
+	/**
+	 * Constructor for classes of this object.
+	 * @param v HotelView object upon which this JPanel is mounted.
+	 */
 	public ScreenGuest(HotelView v) {
 		view = v;
 		setPreferredSize(new Dimension(200,300));

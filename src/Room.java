@@ -8,6 +8,8 @@ import java.util.GregorianCalendar;
  * @author ChristopherNavy
  * @author JonathanWong
  *
+ * Emulates a room with a price and number. 
+ * Can add or delete reservations to itself.
  **/
 public class Room {
     private int price; //price of room
@@ -30,11 +32,15 @@ public class Room {
     }
 
     /**
+     * Returns price of the room.
+     * If luxury (index = 0-9) then price is 200.
+     * If economic (index = 10-19) then price is 80.
      * @return returns the price of the room.
      */
     public int getPrice() {return this.price;}
 
     /**
+     * Returns room number as given in array (0-19)
      * @return returns the room number.
      */
     public int getRoomNumber() {return this.number;}
@@ -107,6 +113,7 @@ public class Room {
     }
 
     /**
+     * Returns all reservations.
      * @return Returns an arraylist of type Reservation of all the reservations for the room.
      */
     public ArrayList<Reservation> getAllReservations()
@@ -115,6 +122,7 @@ public class Room {
     }
 
     /**
+     * Adds reservation to room.
      * @param r reservation to be added to the room.
      */
     public void addReservation(Reservation r)
@@ -144,6 +152,8 @@ public class Room {
 
     /**
      * Deletes all reservations for the room.
+     * precondition: room contains at least one reservation.
+     * postcondition: all reservations are deleted.
      */
     public void deleteAllReservation()
     {

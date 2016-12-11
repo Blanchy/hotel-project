@@ -10,11 +10,16 @@ import javax.swing.*;
  * @author ChristopherNavy
  * @author JonathanWong
  *
+ *Window for the user to choose between the manager or guest interface.
  **/
 public class ScreenInitial extends JPanel {
 
 	private HotelView view;
 
+	/**
+	 * Constructor for classes of this object.
+	 * @param v HotelView object upon which this JPanel is mounted.
+	 */
 	public ScreenInitial(HotelView v) {
 
 		view = v;

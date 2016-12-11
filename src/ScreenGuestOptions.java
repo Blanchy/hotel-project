@@ -10,11 +10,17 @@ import javax.swing.*;
  * @author ChristopherNavy
  * @author JonathanWong
  *
+ * Window where a guest can make a reservation, view/delete reservations,
+ * or sign out.
  **/
 public class ScreenGuestOptions extends JPanel {
 
 	private HotelView view;
 
+	/**
+	 * Constructor for classes of this object.
+	 * @param v HotelView object upon which this JPanel is mounted.
+	 */
 	public ScreenGuestOptions(HotelView v) {
 		view = v;
 		setPreferredSize(new Dimension(200,300));

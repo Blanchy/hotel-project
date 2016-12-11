@@ -16,6 +16,8 @@ import javax.swing.*;
  * 
  * The action listeners call for the controller to change the HotelView's panel
  * to a different Screen.
+ * 
+ * All classes with prefix Screen- are mounted here.
  */
 
 public class HotelView {
@@ -48,12 +50,6 @@ public class HotelView {
 		frame.pack();
 		frame.setVisible(true);
 	}
-
-
-	public static void main(String[] args) {
-		HotelView tester = new HotelView(new Hotel());
-	}
-
 
 	/**
 	 * Changes the displayed screen to the specified panel.

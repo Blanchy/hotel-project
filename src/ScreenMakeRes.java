@@ -10,6 +10,9 @@ import javax.swing.*;
  * @author ChristopherNavy
  * @author JonathanWong
  *
+ * Window for Guest to input the start and end of their reservation,
+ * and to choose the type/price of the room.
+ * Can be a popup or be mounted to HotelView.
  **/
 public class ScreenMakeRes extends JPanel {
 
@@ -21,6 +24,11 @@ public class ScreenMakeRes extends JPanel {
 	 						  to update */
 	private GuestSession gs;
 
+	/**
+	 * Constructor for classes of this object.
+	 * @param v HotelView object upon which this JPanel is mounted.
+	 * @param pp whether or not this window is a popup
+	 */
 	public ScreenMakeRes(HotelView v, boolean pp) {
 		popup = pp;
 		view = v;
@@ -94,6 +102,12 @@ public class ScreenMakeRes extends JPanel {
 		add(buttonPan);
 	}
 	
+	/**
+	 * Helper method for controller (action listeners) to check syntax of user input.
+	 * @param input1 the starting date input
+	 * @param input2 the ending date input
+	 * @return boolean whether the syntax is correct or not
+	 */
 	public boolean checkSyntax(String input1, String input2) {
 		try {
 			String[] array1 = input1.split("/");
