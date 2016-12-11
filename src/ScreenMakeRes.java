@@ -68,7 +68,7 @@ public class ScreenMakeRes extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (checkSyntax(checkInDate.getText(),checkOutDate.getText())) {
-					gs.setPrice(200);
+					gs.setPrice(80);
 					gs.setDates(checkInDate.getText(),checkOutDate.getText());
 
 					if (popup) { /*if popup, then it just closes */
