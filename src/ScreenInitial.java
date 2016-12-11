@@ -21,9 +21,6 @@ public class ScreenInitial extends JPanel {
 	 * @param v HotelView object upon which this JPanel is mounted.
 	 */
 	public ScreenInitial(HotelView v) {
-
-		v.getHotel().loadReservations();
-
 		view = v;
 
 		setLayout(new GridLayout(3,1));
