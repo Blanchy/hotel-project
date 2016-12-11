@@ -41,6 +41,10 @@ public class ManagerSession implements User {
 		return roomList;
 	}
 	
+	/**
+	 * sets the current date being viewed.
+	 * @param date an int[] of the date in the format {MM, DD, YYYY}
+	 */
 	public void setCurrentDate(int[] date) {
 		currentDate = date;
 		notifyViews();
