@@ -12,6 +12,9 @@ import javax.swing.event.ChangeListener;
  * @author ChristopherNavy
  * @author JonathanWong
  *
+ * A View which displays all vacant rooms which comply with the
+ * dates and price specified in the model GuestSession.
+ *
  **/
 public class ScreenVacancies extends JPanel {
 
@@ -19,6 +22,10 @@ public class ScreenVacancies extends JPanel {
 	private ChangeListener listener;
 	private GuestSession gs;
 	
+	/**
+	 * Constructor for classes of this object.
+	 * @param v HotelView object upon which this JPanel is mounted.
+	 */
 	public ScreenVacancies(HotelView v) {
 		view = v;
 		gs = (GuestSession) view.getUserSession();
@@ -131,7 +138,8 @@ public class ScreenVacancies extends JPanel {
 
 	/**
 	 * Gets vacant rooms that match the price and reservation dates
-	 * @return String of vacant rooms 
+	 * @param vacants ArrayList of vacant rooms
+	 * @return formatted String of vacant rooms 
 	 */
 	public String printRooms(ArrayList<Room> vacants) {
 		String text = "Rooms for " + gs.getStart() + " - " + gs.getEnd() + "\n\n";

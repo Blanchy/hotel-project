@@ -16,7 +16,7 @@ import javax.swing.event.ChangeListener;
  * Stores preferred reservation dates and room type when looking
  * up vacant rooms.
  *
- * Updates ScreenVacancies.java.
+ * Model to update ScreenVacancies.java.
  * Sends data for receipt.
  * Sends data for ScreenReservations.
  */

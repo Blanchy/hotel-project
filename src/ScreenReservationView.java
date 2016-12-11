@@ -12,9 +12,18 @@ import java.awt.event.ActionListener;
  * @author ChristopherNavy
  * @author JonathanWong
  *
+ * Formats the reservations of a particular guest to display
+ * on the GUI.
  **/
+
+
 public class ScreenReservationView extends JPanel{
 
+	/**
+	 * Constructor for classes of this object
+	 * @param rn room number
+	 * @param dt dates
+	 */
     ScreenReservationView(String rn, String dt){
         setLayout(new GridLayout(0,1));
 

@@ -15,6 +15,8 @@ import javax.swing.*;
  * @author BlanchyPolangcos
  * @author ChristopherNavy
  * @author JonathanWong
+ * 
+ * JPanel which shows all reservations of the current Guest.
  *
  **/
 public class ScreenReservations extends JPanel{
@@ -22,6 +24,10 @@ public class ScreenReservations extends JPanel{
 	HotelView view;
 	private GuestSession gs;
 
+	/**
+	 * Constructor for classes of this object.
+	 * @param v HotelView object upon which this JPanel is mounted.
+	 */
 	ScreenReservations(HotelView v){
 
 		view = v;
