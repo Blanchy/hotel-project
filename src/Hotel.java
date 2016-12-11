@@ -29,6 +29,7 @@ public class Hotel {
             if (i >= 10) { price = 80; }
             rooms[i] = new Room(i, price);
         }
+        loadReservations(); //tries to get file upon creation
     }
 
     /**

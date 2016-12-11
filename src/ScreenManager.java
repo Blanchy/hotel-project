@@ -44,7 +44,7 @@ public class ScreenManager extends JPanel {
 		
 		quit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				view.getHotel().saveReservations(); //save quits as well
+				view.getHotel().saveReservations(); //quit saves as well
 				System.exit(0);
 			}
 		});
@@ -55,6 +55,7 @@ public class ScreenManager extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Reservations loaded from file.", "Message",
 						JOptionPane.INFORMATION_MESSAGE);
+				view.getHotel().loadReservations();
 			}
 		});
 
@@ -67,7 +68,7 @@ public class ScreenManager extends JPanel {
 			}
 		});
 		
-		menu.addActionListener(new ActionListener() {
+		menu.addActionListener(new ActionListener() { 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.changeScreen(new ScreenInitial(view));
