@@ -13,10 +13,12 @@ import javax.swing.*;
 public class ScreenReservations extends JPanel{
 
 	HotelView view;
+	private GuestSession gs;
 
 	ScreenReservations(HotelView v){
 
 		view = v;
+		gs = (GuestSession) view.getUserSession();
 
 		/**
 		 * get reservations here!
@@ -35,6 +37,12 @@ public class ScreenReservations extends JPanel{
 			}
 
 		});
+
+		System.out.println(gs.getID());
+
+		//view.getHotel().getRooms().
+
+
 
 		String[][] rooms = new String[5][2];
 

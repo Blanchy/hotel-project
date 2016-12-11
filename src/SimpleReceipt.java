@@ -84,9 +84,13 @@ public class SimpleReceipt implements ReceiptStrategy {
         for(int i = 0; i < reserved.size(); i++){
             int temp = reserved.get(i);
             if(temp >= 10){
-                totalDue += 80;
+                int add = 80 * rooms.get(i).getNumberOfDays(rooms.get(i).getStartDate(), rooms.get(i).getEndDate());
+
+                totalDue += add;
             } else if(temp < 10){
-                totalDue += 200;
+                int add = 200 * rooms.get(i).getNumberOfDays(rooms.get(i).getStartDate(), rooms.get(i).getEndDate());
+
+                totalDue += add;
             }
         }
     }
