@@ -310,7 +310,6 @@ public class ScreenManagerView extends JPanel {
 		jp.setLayout(new FlowLayout());
 		
 		JTextArea monthInfo = new JTextArea();
-		monthInfo.setPreferredSize(textAreaSize);
 		monthInfo.setEditable(false);
 		
 		String monthInfoText = "Rooms on " + (date[0]+1) + "/" + date[1] + "/" + date[2] + "\n";
