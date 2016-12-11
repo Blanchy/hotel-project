@@ -33,12 +33,11 @@ public class ScreenReservations extends JPanel{
 		view = v;
 		gs = (GuestSession) view.getUserSession();
 
-		/**
-		 * get reservations here!
-		 */
-		//getReservations();
 
-		JButton menu = new JButton("Return to Guest Menu");
+/**
+ * returns user to Guest Menu
+ */
+        JButton menu = new JButton("Return to Guest Menu");
 
 		menu.addActionListener(new ActionListener() {
 
@@ -55,17 +54,28 @@ public class ScreenReservations extends JPanel{
 
 		setLayout(new GridLayout(0,1));
 
+
+        /**
+         * Default case if no rooms are reserved.
+         */
         if(rooms.size() == 0){
             JPanel temp = new ScreenReservationView("No Rooms Reserved", "No Dates Reserved");
             add(temp);
             add(menu);
         }
 
+        /**
+         * creates JPanels for every screen reservation by the user.
+         * Clickable and clicking it will prompt user to delete the reservation or not.
+         */
 		for(int i = 0; i < rooms.size(); i++) {
 			JPanel temp = new ScreenReservationView(Integer.toString(rooms.get(i).getRoomIndex() + 1),rooms.get(i).getStartDate() + "-" + rooms.get(i).getEndDate());
         final int numberHolder = i;
 
 
+            /**
+             * Mouse Listener for clicking.
+             */
 			temp.addMouseListener(new MouseListener() {
 				@Override
 				public void mouseClicked(MouseEvent e) {

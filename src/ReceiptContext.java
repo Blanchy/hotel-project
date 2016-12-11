@@ -3,15 +3,15 @@
  * @author ChristopherNavy
  * @author JonathanWong
  *
- * Context for reciept using Strategy method
+ * Context for receipt using Strategy method
  **/
 public class ReceiptContext {
 
     private ReceiptStrategy strategy;
 
     /**
-     * constructor
-     * @param strategy strategy to be used to print reciept
+     * Context class for the Receipt Strategy
+     * @param strategy
      */
     ReceiptContext(ReceiptStrategy strategy){
         this.strategy = strategy;

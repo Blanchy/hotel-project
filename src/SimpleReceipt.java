@@ -8,6 +8,7 @@ import java.util.*;
  * @author JonathanWong
  *
  **/
+
 public class SimpleReceipt implements ReceiptStrategy {
     private JFrame receiptFrame;
     private JPanel namePanel;
@@ -21,10 +22,12 @@ public class SimpleReceipt implements ReceiptStrategy {
     private ArrayList<Integer> reserved;
     String userID;
 
-
+    /**
+     * Constructor for printing the receipt in Simple Format
+     * @param info
+     */
     SimpleReceipt(ArrayList info){
 
-        this.getRooms();
 
         receiptFrame = new JFrame("Simple Receipt");
 
@@ -47,6 +50,9 @@ public class SimpleReceipt implements ReceiptStrategy {
         reserved = (ArrayList<Integer>) info.get(2);
         rooms = (ArrayList<Reservation>) info.get(1);
 
+        /**
+         * Prints individual rooms reserved.
+         */
         for(int i = 0; i < reserved.size(); i++){
             JTextArea rm = new JTextArea(Integer.toString(reserved.get(i) + 1)  + ": " + rooms.get(i).toString() );
             rm.setEditable(false);
@@ -61,7 +67,11 @@ public class SimpleReceipt implements ReceiptStrategy {
 
     }
 
+
     @Override
+    /**
+     * displays receipt information in a new window.
+     */
     public void printReceipt() {
         receiptFrame.setLayout(new BoxLayout(receiptFrame.getContentPane(), BoxLayout.Y_AXIS));
 
@@ -75,21 +85,9 @@ public class SimpleReceipt implements ReceiptStrategy {
     }
 
     @Override
-    public void getUserID() {
-        userID = "001";
-    }
-
-    @Override
-    public void getName() {
-        name = "Bob";
-    }
-
-    @Override
-    public void getRooms() {
-
-    }
-
-    @Override
+    /**
+     * calculates total dues cost.
+     */
     public void getTotalDues() {
         for(int i = 0; i < reserved.size(); i++){
             int temp = reserved.get(i);

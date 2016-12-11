@@ -46,7 +46,6 @@ public class ScreenGuestOptions extends JPanel {
 			@Override
 
 			public void actionPerformed(ActionEvent e) {
-
 				view.changeScreen(new ScreenReservations(view));
 			}
 
