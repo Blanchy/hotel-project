@@ -6,7 +6,7 @@
  * The main class which runs the hotel reservation system.
  **/
 
-public class HotelReservation {
+public class HotelReservationSystem {
 
 	/**
 	 * main method to run hotel reservation system
