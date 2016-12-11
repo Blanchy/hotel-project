@@ -10,7 +10,7 @@ import javax.swing.*;
  *
  * Prompts the Guest to enter a user ID.
  * GuestSession of interface User is then created with that ID.
- *
+ * 
  **/
 public class ScreenUserID extends JPanel {
 
