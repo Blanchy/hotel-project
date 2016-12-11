@@ -2,6 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,7 +41,7 @@ public class ScreenManager extends JPanel {
 		load.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(null, "Reservations loaded from file.", "Message", 
+				JOptionPane.showMessageDialog(null, "Reservations loaded from file.", "Message", 
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
