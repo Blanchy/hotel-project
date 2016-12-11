@@ -28,12 +28,12 @@ public class ScreenVacancies extends JPanel {
 		
 		vacancies.setLayout(new FlowLayout());
 		JTextArea rooms = new JTextArea(); 
-		rooms.setPreferredSize(new Dimension(200, 400));
 		rooms.setText(printRooms(gs.getRooms()));
 		rooms.setEditable(false);
 		
 		JScrollPane scrollRooms = new JScrollPane(rooms, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollRooms.setPreferredSize(new Dimension(200,400));
 		
 		listener = new ChangeListener() {
 			@Override
