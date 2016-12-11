@@ -107,25 +107,5 @@ public class Hotel {
     	return rooms[roomNum];
     }
     
-    public static void main(String[] args)
-    {
-        int rows = 4;
-        int columns = 5;
-        int [][] hotel = new int[rows][columns];
-
-        System.out.println("Signifies rooms. 1-10 are luxury, 11-20 are economy");
-        int count = 1;
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                hotel[i][j] = count;
-                System.out.print("[" + hotel[i][j] + "] ");
-                count++;
-            }
-            System.out.println();
-        }
-    }
-
 
 }
