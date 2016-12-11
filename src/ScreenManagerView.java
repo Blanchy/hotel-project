@@ -16,6 +16,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.omg.CORBA.Current;
+
 /**
  * @author BlanchyPolangcos
  * @author ChristopherNavy
@@ -158,21 +160,52 @@ public class ScreenManagerView extends JPanel {
 		
 		JPanel calendar = new JPanel();
 		calendar.setLayout(new BorderLayout());
+		calendar.setPreferredSize(new Dimension(this.getWidth()/2, this.getHeight()/2));
 		
 		/* can navigate by month or year */
 		JPanel buttons = new JPanel();
-		buttons.setLayout(new GridLayout(1,5));
+		buttons.setLayout(new GridLayout(1, 0));
 		JButton backYear = new JButton("<<");
 		JButton backMonth = new JButton("<");
-		JLabel space = new JLabel();
 		JButton forwardMonth = new JButton(">");
 		JButton forwardYear = new JButton(">>");
 		
+		backYear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				current.add(Calendar.YEAR, -1);		
+				ms.setCurrentDate(new int[]{current.get(Calendar.MONTH), current.get(Calendar.DATE), current.get(Calendar.YEAR)});
+			}
+		});
+		backMonth.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				current.add(Calendar.MONTH, -1);		
+				ms.setCurrentDate(new int[]{current.get(Calendar.MONTH), current.get(Calendar.DATE), current.get(Calendar.YEAR)});
+			}
+		});
+		forwardMonth.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				current.add(Calendar.MONTH, 1);	
+				ms.setCurrentDate(new int[]{current.get(Calendar.MONTH), current.get(Calendar.DATE), current.get(Calendar.YEAR)});
+			}
+		});
+		forwardYear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				current.add(Calendar.YEAR, 1);		
+				ms.setCurrentDate(new int[]{current.get(Calendar.MONTH), current.get(Calendar.DATE), current.get(Calendar.YEAR)});
+			}
+		});
+		
+		/* holds calendar grid and calendar header */
 		JPanel calBody = new JPanel();
 		calBody.setLayout(new BorderLayout());
 		calBody.add(new JLabel(monthArray[current.get(Calendar.MONTH)] + " " + current.get(Calendar.YEAR),
 				SwingConstants.CENTER), BorderLayout.NORTH);
 		
+		/* the calendar grid */
 		JPanel calGrid = new JPanel();
 		calGrid.setLayout(new GridLayout(0,7));
 
@@ -182,7 +215,7 @@ public class ScreenManagerView extends JPanel {
 		
 		for (int i = 0; i <= boxes.length - 1; i++) { 
 			JLabel day = new JLabel(boxes[i]);
-			System.out.println(day.getText());
+//			System.out.println(day.getText());
 			try {
 				if (Integer.parseInt(day.getText()) == current.get(Calendar.DATE)) {
 					day.setForeground(Color.RED);
@@ -195,7 +228,7 @@ public class ScreenManagerView extends JPanel {
 							int year = current.get(Calendar.YEAR);
 							int month = current.get(Calendar.MONTH);
 							int date = Integer.parseInt(day.getText());
-							System.out.println(day.getText() + " " + month + " " + year);
+//							System.out.println(day.getText() + " " + month + " " + year);
 							ms.setCurrentDate(new int[]{month, date, year});
 						}
 						@Override
@@ -215,8 +248,9 @@ public class ScreenManagerView extends JPanel {
 			labels[i] = day;
 		} 
 		
-		for (JLabel jl : labels) {
-			calGrid.add(jl, SwingConstants.CENTER);
+		for (int i = 0; i<= labels.length - 1; i++)
+		{
+			calGrid.add(labels[i]);
 		}
 		
 		backYear.addActionListener(new ActionListener() {
@@ -251,11 +285,10 @@ public class ScreenManagerView extends JPanel {
 		
 		buttons.add(backYear);
 		buttons.add(backMonth);
-		buttons.add(space);
 		buttons.add(forwardMonth);
 		buttons.add(forwardYear);
 		
-		calendar.add(buttons, SwingConstants.CENTER);
+		calendar.add(buttons, BorderLayout.NORTH);
 		calendar.add(calBody, SwingConstants.CENTER);
 		
 		return calendar;
@@ -282,13 +315,13 @@ public class ScreenManagerView extends JPanel {
 		Room[] allRooms = view.getHotel().getRooms();
 		
 		for (Room r : allRooms) {
-			if (r.isRoomAvailable(date[0] + "/" + date[1] + "/" + date[2])) {
+			if (r.isRoomAvailable((1+date[0]) + "/" + date[1] + "/" + date[2])) {
 				vacantText = vacantText + (r.getRoomNumber()+1) + "\n";
 			}
 			else {
 				String user = "";
 				for (Reservation rsvn : r.getAllReservations()) {
-					if (!rsvn.isResAvailable(date[0] + "/" + date[1] + "/" + date[2])){ //if reservation is occupied on this date
+					if (!rsvn.isResAvailable((1+date[0]) + "/" + date[1] + "/" + date[2])){ //if reservation is occupied on this date
 						user = rsvn.getUserID();
 					}
 				}
@@ -403,6 +436,12 @@ public class ScreenManagerView extends JPanel {
 		return jp;
 	}
 	
+	/**
+	 * private method to return an array of dates for the particular month
+	 * including days of the week, blanks, and day numbers
+	 * @param date current date as returned by model
+	 * @return array of days
+	 */
 	private String[] getCalGrid(int[] date) {
 		String[] calendarGrid = new String[49];
 		
@@ -414,8 +453,10 @@ public class ScreenManagerView extends JPanel {
 		calendarGrid[5] = "Fr";
 		calendarGrid[6] = "Sa";
 
-		GregorianCalendar temp = new GregorianCalendar(date[2], date[1] - 1, date[0]);
+		GregorianCalendar temp = new GregorianCalendar(date[2], date[0] - 1, 0);
 		temp.set(Calendar.DATE, temp.getActualMinimum(Calendar.DAY_OF_MONTH));
+		
+//		System.out.println(temp.get(Calendar.DAY_OF_WEEK) + "\n" + temp.get(Calendar.MONTH));
 		
 		int blanks = temp.get(Calendar.DAY_OF_WEEK) - 1;
 		
