@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.*;
 
 import javax.swing.*;
 
@@ -38,25 +39,20 @@ public class ScreenReservations extends JPanel{
 
 		});
 
-		System.out.println(gs.getID());
+		ArrayList<Reservation> rooms = ((GuestSession) view.getUserSession()).getAllReservations();
 
-		//view.getHotel().getRooms().
-
-
-
-		String[][] rooms = new String[5][2];
-
-		for(int i = 0; i < 5; i++){
-			rooms[i][0] = "10/28/2016";
-			rooms[i][1] = "L" + i;
-		}
-
-
-		//Add the ubiquitous "Hello World" label.
 		setLayout(new GridLayout(0,1));
+        
+        if(rooms.size() == 0){
+            JPanel temp = new ScreenReservationView("No Rooms Reserved", "No Dates Reserved");
+            add(temp);
+            add(menu);
+        }
 
-		for(int i = 0; i < rooms.length; i++) {
-			JPanel temp = new ScreenReservationView(rooms[i][0],rooms[i][1]);
+		for(int i = 0; i < rooms.size(); i++) {
+			JPanel temp = new ScreenReservationView(Integer.toString(rooms.get(i).getRoomIndex() + 1),rooms.get(i).getStartDate() + "-" + rooms.get(i).getEndDate());
+        final int numberHolder = i;
+
 
 			temp.addMouseListener(new MouseListener() {
 				@Override
@@ -81,7 +77,7 @@ public class ScreenReservations extends JPanel{
 						/**
 						 * Delete Reservation here
 						 */
-						//view.getHotel().deleteReservation();
+						view.getHotel().deleteReservation(rooms.get(numberHolder).getRoomIndex(),rooms.get(numberHolder).getStartDate());
 						temp.setVisible(false);
 					}
 
