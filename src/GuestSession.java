@@ -119,6 +119,19 @@ public class GuestSession implements User {
 		}
 		return available;
 	}
+	
+	/**
+	 * sets start and end dates of potential reservation to these dates
+	 * @param start starting date
+	 * @param end ending date
+	 * precondition: start and end are in format MM/DD/YYYY
+	 * postcondition: start and end are set to this GuestSession object
+	 */
+	public void setDates(String start, String end) {
+		setStart(start);
+		setEnd(end);
+		notifyView();
+	}
 
 	/**
 	 * sets start of potential reservation to this date
@@ -128,7 +141,6 @@ public class GuestSession implements User {
 	 */
 	public void setStart(String date) {
 		startDate = date;
-		notifyView();
 	}
 	
 	/**
@@ -139,7 +151,6 @@ public class GuestSession implements User {
 	 */
 	public void setEnd(String date) {
 		endDate = date;
-		notifyView();
 	}
 	
 	/**

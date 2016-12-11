@@ -50,10 +50,7 @@ public class ScreenMakeRes extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (checkSyntax(checkInDate.getText(),checkOutDate.getText())) {
 					gs.setPrice(200);
-
-
-					gs.setStart(checkInDate.getText());
-					gs.setEnd(checkOutDate.getText());
+					gs.setDates(checkInDate.getText(),checkOutDate.getText());
 
 					if (popup) { /*if popup, then it just closes */
 						((JFrame) (((JComponent) e.getSource()).getTopLevelAncestor())).dispose(); 
@@ -71,9 +68,8 @@ public class ScreenMakeRes extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (checkSyntax(checkInDate.getText(),checkOutDate.getText())) {
-					gs.setPrice(80);
-					gs.setStart(checkInDate.getText());
-					gs.setEnd(checkOutDate.getText());
+					gs.setPrice(200);
+					gs.setDates(checkInDate.getText(),checkOutDate.getText());
 
 					if (popup) { /*if popup, then it just closes */
 						((JFrame) (((JComponent) e.getSource()).getTopLevelAncestor())).dispose(); 
