@@ -12,6 +12,7 @@ import javax.swing.*;
  * @author ChristopherNavy
  * @author JonathanWong
  *
+ *Allows Guest to choose which reciept format to print.
  **/
 public class ScreenReceiptOptions extends JPanel {
 

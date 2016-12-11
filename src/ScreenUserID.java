@@ -8,11 +8,18 @@ import javax.swing.*;
  * @author ChristopherNavy
  * @author JonathanWong
  *
+ * Prompts the Guest to enter a user ID.
+ * GuestSession of interface User is then created with that ID.
+ * 
  **/
 public class ScreenUserID extends JPanel {
 
 	private HotelView view;
 	
+	/**
+	 * Constructor for classes of this object.
+	 * @param v HotelView object upon which this JPanel is mounted.
+	 */
 	public ScreenUserID(HotelView v) {
 		view = v;
 		

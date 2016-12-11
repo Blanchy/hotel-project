@@ -116,6 +116,10 @@ public class ScreenManagerView extends JPanel {
 		
 	}
 	
+	/**
+	 * draws a Calendar of days and hotel information on the selected date.
+	 * @param date the date as an array in the format {MM, DD, YYYY}
+	 */
 	public void drawMonthView(int[] date) {
 		body.removeAll();
 		body.repaint();
@@ -153,6 +157,7 @@ public class ScreenManagerView extends JPanel {
 	/**
 	 * shows a clickable calendar, with the selected date highlighted.
 	 * calendar can also be advanced by month and by year
+	 * @param date the date as an array in format {MM,DD,YYYY}
 	 * @return Jpanel containing clickable calendar
 	 */
 	public JPanel drawMonth(int[] date) {
@@ -298,7 +303,7 @@ public class ScreenManagerView extends JPanel {
 	 * for the selected day of the month, this window shows the reserved rooms
 	 * as well as vacant rooms
 	 * @param date array, assuming array is in form of {DD, MM, YYYY}
-	 * @return
+	 * @return JPanel of selected date
 	 */
 	public JPanel drawMonthInfo(int[] date) {
 		JPanel jp = new JPanel();
@@ -344,8 +349,9 @@ public class ScreenManagerView extends JPanel {
 	}
 	
 	/**
-	 * this shows ALL rooms in the hotel. this is also clickable.
-	 * @return
+	 * this shows ALL rooms in the hotel. this is also clickable. the current room is in bold.
+	 * @param current selected room.
+	 * @return JPanel of all rooms
 	 */
 	public JPanel drawRoom(int room) {
 		JPanel jp = new JPanel();
@@ -362,7 +368,7 @@ public class ScreenManagerView extends JPanel {
 			roomLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			roomLabel.setFont(new Font(null, Font.PLAIN, fontSize));
 			if ((i-1) == room) {
-				roomLabel.setFont(new Font(null, Font.BOLD, fontSize));
+				roomLabel.setFont(new Font(null, Font.BOLD, 17));
 			}
 			roomLabel.addMouseListener(new MouseListener() {
 
@@ -392,7 +398,8 @@ public class ScreenManagerView extends JPanel {
 	/**
 	 * for the selected room in drawRoom, this window shows the
 	 * room number, price, and (if applicable) the reservation info for each reservation (user ID, start and end dates)
-	 * @return
+	 * @param current selected room.
+	 * @return JPanel information of selected room
 	 */
 	public JPanel drawRoomInfo(int room) {
 		JPanel jp = new JPanel();
