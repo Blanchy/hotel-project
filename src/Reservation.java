@@ -12,8 +12,8 @@ public class Reservation {
     private String userID;
     private String startDate; //in format MM//DD/YYYY
     private String endDate; //in format MM/DD/YYYY
-    private Calendar cal1 = new GregorianCalendar();
-    private Calendar cal2 = new GregorianCalendar();
+    private Calendar cal1;
+    private Calendar cal2;
 
 
     /**
@@ -56,27 +56,30 @@ public class Reservation {
         int endDateDay = Integer.parseInt(endDateArray[1]);
         int endDateYear = Integer.parseInt(endDateArray[2]);
 
-        Calendar cal1 = new GregorianCalendar();
-        Calendar cal2 = new GregorianCalendar();
-
-        cal1.set(startDateYear, startDateMonth+1, startDateDay);
-        cal2.set(endDateYear, endDateMonth+1, endDateDay);
+        cal1 = new GregorianCalendar(startDateYear, startDateMonth-1, startDateDay);
+        cal2 = new GregorianCalendar(endDateYear, endDateMonth-1, endDateDay);
 
     }
 
-    public boolean isAvailable(String isAvaliableDate) //format MM/DD/YYYY
+    public Date getCalOne() {return cal1.getTime();}
+    public Date getCalTwo() {return cal2.getTime();}
+
+    public boolean isResAvailable(String isAvaliableDate) //format MM/DD/YYYY
     {
+        //System.out.println("ENTER RESERVATION DEBUG MODE");
         String[] checkDateArray = isAvaliableDate.split("/");
         int checkDateMonth = Integer.parseInt(checkDateArray[0]);
         int checkDateDay = Integer.parseInt(checkDateArray[1]);
         int checkDateYear = Integer.parseInt(checkDateArray[2]);
-        Calendar tempCalendar = new GregorianCalendar(checkDateYear, checkDateMonth+1, checkDateDay);
+        Calendar tempCalendar = new GregorianCalendar(checkDateYear, checkDateMonth-1, checkDateDay);
         Date checkDate = tempCalendar.getTime();
-
+        //System.out.println("checkDate: " + checkDate);
         Date startDate = cal1.getTime();
+        //System.out.println("startDate: " + startDate);
         Date endDate = cal2.getTime();
+        //System.out.println("endDate: " + endDate);
 
-        return !(checkDate.before(startDate) || checkDate.after(endDate));
+        return (checkDate.before(startDate) || checkDate.after(endDate));
     }
 
     /**

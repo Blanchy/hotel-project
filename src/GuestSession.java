@@ -89,7 +89,7 @@ public class GuestSession implements User {
 		
 		for (Room r : rooms) {
 			if (r.getPrice() == this.price) {
-				if (r.isAvailable(startDate, endDate)) {
+				if (r.isRoomAvailable(startDate, endDate)) {
 					available.add(r);
 				}
 			}
