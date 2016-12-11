@@ -16,6 +16,10 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
     private ArrayList<Reservation> rooms;
     private ArrayList<Integer> reserved;
 
+    /**
+     * Creates a new Comprehensive Receipt
+     * @param info information to be displayed on the receipt
+     */
     ComprehensiveReceipt(ArrayList info){
 
         this.getRooms();
@@ -58,7 +62,9 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
 
     }
 
-    @Override
+    /**
+     * Pop ups receipt of all the reservations.
+     */
     public void printReceipt() {
         receiptFrame.setLayout(new BoxLayout(receiptFrame.getContentPane(), BoxLayout.Y_AXIS));
 
@@ -86,7 +92,9 @@ public class ComprehensiveReceipt implements ReceiptStrategy {
 
     }
 
-    @Override
+    /**
+     * Updates the total price in field 'totalDue'
+     */
     public void getTotalDues() {
         for(int i = 0; i < reserved.size(); i++){
             int temp = reserved.get(i);

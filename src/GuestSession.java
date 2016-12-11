@@ -86,6 +86,11 @@ public class GuestSession implements User {
 		notifyView();
 	}
 
+	/**
+	 * Deletes reservation based on room number and start date
+	 * @param rn room number of which reservation to delete
+	 * @param sd start date of the reservation to delete in format MM/DD/YYYY
+	 */
 	public void deleteReservation(int rn, String sd){
 		for(int i = 0; i < newRes.size(); i++){
 			if(newRes.get(i).getRoomIndex() == rn && newRes.get(i).getStartDate() == sd){
@@ -131,6 +136,36 @@ public class GuestSession implements User {
 		setStart(start);
 		setEnd(end);
 		notifyView();
+	}
+
+	@Override
+	public void loadReservations() {
+
+	}
+
+	@Override
+	public void viewInformation() {
+
+	}
+
+	@Override
+	public void saveReservations() {
+
+	}
+
+	@Override
+	public void addReservation() {
+
+	}
+
+	@Override
+	public String viewReservation() {
+		return null;
+	}
+
+	@Override
+	public void deleteReservation() {
+
 	}
 
 	/**

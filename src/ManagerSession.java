@@ -40,16 +40,55 @@ public class ManagerSession implements User {
 		ArrayList<Room> roomList = (ArrayList<Room>) Arrays.asList(hotel.getRooms());
 		return roomList;
 	}
+
 	
 	/**
-	 * sets the current date being viewed.
-	 * @param date an int[] of the date in the format {MM, DD, YYYY}
+	 * sets the current date being viewed
+	 */
+
+	@Override
+	public void loadReservations() {
+
+	}
+
+	@Override
+	public void viewInformation() {
+
+	}
+
+	@Override
+	public void saveReservations() {
+
+	}
+
+	@Override
+	public void addReservation() {
+
+	}
+
+	@Override
+	public String viewReservation() {
+		return null;
+	}
+
+	@Override
+	public void deleteReservation() {
+
+	}
+
+	/**
+	 * Sets the current date to the specified date
+	 * @param date date to be changed to.
 	 */
 	public void setCurrentDate(int[] date) {
 		currentDate = date;
 		notifyViews();
 	}
-	
+
+	/**
+	 * Sets the current room viewed to the specified room.
+	 * @param roomNum desired room to be viewed.
+	 */
 	public void setCurrentRoom(int roomNum) {
 		currentRoom = roomNum;
 		notifyViews();

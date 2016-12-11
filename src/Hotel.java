@@ -1,8 +1,4 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.io.*;
 
 /**
  * @author BlanchyPolangcos
@@ -16,8 +12,11 @@ public class Hotel {
     private Room[] rooms;
 
     /**
-     * Constructor for Hotel 
-     **/
+     /** Constructor for Hotel
+     *
+     * Creates a new hotel, using a 1D array as the data structure.
+     * indexes 0-9 are luxury ($200), 10-19 are economy ($80).
+     */
     public Hotel()
     {
         rooms = new Room[20];
@@ -29,12 +28,19 @@ public class Hotel {
         }
     }
 
+    /**
+     * Adds a reservation to respective room.
+     * Gets room index information from the reservation. For more information, look at Reservation.java.
+     * @param r reservation to add
+     */
     public void addReservation(Reservation r)
     {
-        //ex: addReservation(2, r) should reserve the 2nd room (index 1)
         rooms[r.getRoomIndex()].addReservation(r);
     }
 
+    /**
+     * Clears all reservations from the hotel.
+     */
     public void deleteAllReservations()
     {
         for (int i = 0; i < rooms.length; i++)
@@ -43,34 +49,30 @@ public class Hotel {
         }
     }
 
+    /**
+     * Deletes a reservation from a room, based on the start date of the reservation.
+     * @param roomIndex room to delete resevation from.
+     * @param reservationStartDate start date of reservation to be deleted.
+     */
     public void deleteReservation(int roomIndex, String reservationStartDate)
     {
-        //no specification of userID, how to delete?
-    	// because a room can only have one reservation on a given date, we dont have to specify
-    	// which user made it
-    	/*
-    	boolean roomFound = false;
-    	int i = 0;
-    	while (!roomFound) {
-    		if (rooms[i] == roomIndex) {
-    			
-    			rooms[i].deleteReservation(reservationStartDate);
-    			roomFound = true;
-    		}
-    		i++;
-    	}
-    	*/
     	rooms[roomIndex].deleteReservation(reservationStartDate);
         System.out.println(rooms);
     	/* assuming roomIndex goes 0-19 */
     }
 
+    /**
+     * Loads reservation data from a text file.
+     */
     public void loadReservations()
     {
-        //not done
+
     }
 
 
+    /**
+     * Saves all reservation data to a text file, "reservations.txt"
+     */
     public void saveReservations()
     {
         try {
@@ -85,6 +87,11 @@ public class Hotel {
         }
     }
 
+    /**
+     * Returns a string representation of the hotel.
+     *
+     * @return
+     */
     public String toString()
     {
         String rtn = "HOTEL: \n";
@@ -110,6 +117,30 @@ public class Hotel {
     public Room getRoom(int roomNum) {
     	return rooms[roomNum];
     }
-    
+
+
+
+    /*
+    public static void main(String[] args)
+    {
+        int rows = 4;
+        int columns = 5;
+        int [][] hotel = new int[rows][columns];
+
+        System.out.println("Signifies rooms. 1-10 are luxury, 11-20 are economy");
+        int count = 1;
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                hotel[i][j] = count;
+                System.out.print("[" + hotel[i][j] + "] ");
+                count++;
+            }
+            System.out.println();
+        }
+    }
+    */
+
 
 }

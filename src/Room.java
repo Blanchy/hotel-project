@@ -7,11 +7,18 @@ import java.util.GregorianCalendar;
  * Created by JonWong on 11/5/16.
  */
 public class Room {
-    boolean isReserved;
     private int price; //price of room
     private int number; //room number
     private ArrayList<Reservation> reservations;
 
+    /**
+     * Creates a new room.
+     * Rooms 1-10 (indexes 0-9) are luxury, and 11-19 (indexes 10-19) are economy.
+     * Luxury: $200
+     * Economy: $80
+     * @param number Assigned room number.
+     * @param price the price associated with the respective room.
+     */
     public Room(int number, int price)
     {
         this.number = number;
@@ -19,10 +26,22 @@ public class Room {
         reservations = new ArrayList<Reservation>();
     }
 
+    /**
+     * @return returns the price of the room.
+     */
     public int getPrice() {return this.price;}
+
+    /**
+     * @return returns the room number.
+     */
     public int getRoomNumber() {return this.number;}
 
-
+    /**
+     * Checks if the room is available on a certain date
+     * @param isAvaliableDate the date to be checked in format MM/DD/YYYY
+     * @return true if the room is available on the date,
+     * false otherwise
+     */
     public boolean isRoomAvailable(String isAvaliableDate)
     {
         //System.out.println("ENTER ROOM DEBUG MODE");
@@ -47,9 +66,9 @@ public class Room {
 
     /**
      * Checks dates for availability. Assumes dates are in format MM/DD/YYYY
-     * @param date1 the start date in MM/DD/YYYY
-     * @param date2 the end date in MM/DD/YYYY
-     * @return if room is available between these dates
+     * @param date1 the start date in format MM/DD/YYYY
+     * @param date2 the end date in format MM/DD/YYYY
+     * @return true if room is available between these dates, false otherwise
      */
     public boolean isRoomAvailable(String date1, String date2) {
     	String[] dateArray1 = date1.split("/");
@@ -83,19 +102,29 @@ public class Room {
     	
     	return true;
     }
-    
+
+    /**
+     * @return Returns an arraylist of type Reservation of all the reservations for the room.
+     */
     public ArrayList<Reservation> getAllReservations()
     {
         return reservations;
     }
 
-
+    /**
+     * @param r reservation to be added to the room.
+     */
     public void addReservation(Reservation r)
     {
         reservations.add(r);
     }
 
-    public void deleteReservation(/*String userID,*/ String startDate) //maybe delete userID? because multiple users can't have the same start date
+    /**
+     * Deletes the room reservation based on the start date.
+     * @param startDate start date of the reservation to be deleted.
+     */
+    public void deleteReservation(/*String userID,*/ String startDate)
+    //maybe delete userID? because multiple users can't have the same start date
     {
         for (int i = 0; i < reservations.size(); i++)
         {
@@ -110,11 +139,17 @@ public class Room {
         return;
     }
 
+    /**
+     * Deletes all reservations for the room.
+     */
     public void deleteAllReservation()
     {
         reservations.clear();
     }
 
+    /**
+     * @return String representation of the reservations in the room.
+     */
     public String toString()
     {
         String rtn = "Room: " + this.number + " has following reservations: \n";

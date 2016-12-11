@@ -29,7 +29,11 @@ public class HotelView {
 
 	private int	WIDTH = 500;
 	private int HEIGHT = 500;
-	
+
+	/**
+	 * Creates a new HotelView for the user to choose options from.
+	 * @param h hotel to display
+	 */
 	public HotelView(Hotel h) {
 		hotel = h;
 
@@ -45,6 +49,16 @@ public class HotelView {
 		frame.setVisible(true);
 	}
 
+
+	public static void main(String[] args) {
+		HotelView tester = new HotelView(new Hotel());
+	}
+
+
+	/**
+	 * Changes the displayed screen to the specified panel.
+	 * @param jp panel to be changed to.
+	 */
 	public void changeScreen(JPanel jp) {
 		
 		frame.setContentPane(jp);

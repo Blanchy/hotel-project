@@ -12,39 +12,23 @@ public class Reservation {
     private String userID;
     private String startDate; //in format MM//DD/YYYY
     private String endDate; //in format MM/DD/YYYY
-    private Calendar cal1;
-    private Calendar cal2;
+    private Calendar startCal;
+    private Calendar endCal;
 
 
     /**
      * Creates a new Reservation.
-     * If length of stay exceeds 60 days, userID is -1, startDate/endDate = null.
+     * @param roomIndex room index to which the reservation belongs to
      * @param userID userID of the person reserving the room
-     * @param startDate start date of the reservation
-     * @param endDate end date of the reservation
+     * @param startDate start date of the reservation in format: MM/DD/YYYY
+     * @param endDate end date of the reservation in format: MM/DD/YYYY
      */
-    public Reservation(int arrayIndex, String userID, String startDate, String endDate)
+    public Reservation(int roomIndex, String userID, String startDate, String endDate)
     {
-        /*
-        if (getNumberOfDays(startDate, endDate) > 60)
-        {
-            this.userID = "invalid userID";
-            this.startDate = "invalid startDate";
-            this.endDate = "invalid endDate";
-            System.out.println("INVALID RESERVATION: LENGTH OF STAY TOO LONG.");
-        }
-        else
-        {
-            this.userID = userID;
-            this.startDate = startDate;
-            this.endDate = endDate;
-        }
-        */
-
-            this.userID = userID;
-            this.startDate = startDate;
-            this.endDate = endDate;
-            roomIndex = arrayIndex;
+        this.userID = userID;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.roomIndex = roomIndex;
 
         String[] startDateArray = startDate.split("/");
         int startDateMonth = Integer.parseInt(startDateArray[0]);
@@ -56,15 +40,31 @@ public class Reservation {
         int endDateDay = Integer.parseInt(endDateArray[1]);
         int endDateYear = Integer.parseInt(endDateArray[2]);
 
-        cal1 = new GregorianCalendar(startDateYear, startDateMonth-1, startDateDay);
-        cal2 = new GregorianCalendar(endDateYear, endDateMonth-1, endDateDay);
+        startCal = new GregorianCalendar(startDateYear, startDateMonth-1, startDateDay);
+        endCal = new GregorianCalendar(endDateYear, endDateMonth-1, endDateDay);
 
     }
 
-    public Date getCalOne() {return cal1.getTime();}
-    public Date getCalTwo() {return cal2.getTime();}
+    /**
+     * gets date of start of reservation
+     * @return Date of the start of reservation
+     */
+    public Date getStartCal() {return startCal.getTime();}
 
-    public boolean isResAvailable(String isAvaliableDate) //format MM/DD/YYYY
+    /**
+     * gets date of end of reservation
+     * @return Date of end of reservations
+     */
+    public Date getEndCal() {return endCal.getTime();}
+
+    /**
+     * Checks if a date is available.
+     * tldr; checks if a date is in between the start and end dates
+     * @param isAvaliableDate date to be checked in format MM/DD/YYYY
+     * @return false if isAvailableDate is in between the start and end date,
+     * true otherwise
+     */
+    public boolean isResAvailable(String isAvaliableDate)
     {
         //System.out.println("ENTER RESERVATION DEBUG MODE");
         String[] checkDateArray = isAvaliableDate.split("/");
@@ -74,9 +74,9 @@ public class Reservation {
         Calendar tempCalendar = new GregorianCalendar(checkDateYear, checkDateMonth-1, checkDateDay);
         Date checkDate = tempCalendar.getTime();
         //System.out.println("checkDate: " + checkDate);
-        Date startDate = cal1.getTime();
+        Date startDate = startCal.getTime();
         //System.out.println("startDate: " + startDate);
-        Date endDate = cal2.getTime();
+        Date endDate = endCal.getTime();
         //System.out.println("endDate: " + endDate);
 
         return (checkDate.before(startDate) || checkDate.after(endDate));
@@ -108,11 +108,8 @@ public class Reservation {
 
     /**
      * Returns the numbers of the days in between the startDate and endDate, not including the endDate.
-     * Length of stay cannot be longer than 60 days.
-     * @return the number of days in between startDate and endDate, or -1 if
-     *         reservation is longer than 60 days.
+     * @return the number of days in between startDate and endDate
      */
-    //get number of days in between the startDate and endDate, not including endDate.
     public int getNumberOfDays(String startDate, String endDate)
     {
     	String[] sd = startDate.split("/");
@@ -127,10 +124,14 @@ public class Reservation {
         return daysBetween; 
     }
 
+    /**
+     * @return String representation of the reservation in format
+     * "USERID has reserved from STARTDATE to ENDDATE. Length of stay: LENGTHOFSTAY."
+     */
     public String toString()
     {
         String rtn = userID + " has reserved from " + startDate + " to " + endDate +
         ". Length of stay: " + getNumberOfDays(startDate, endDate);
         return rtn; 
     }
-} //test comment 
+}
