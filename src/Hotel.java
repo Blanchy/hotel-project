@@ -8,6 +8,7 @@ import java.util.ArrayList;
  *
  * Created by JonWong on 11/5/16. this is a comment
  */
+
 public class Hotel {
 
     private Room[] rooms;
@@ -69,7 +70,6 @@ public class Hotel {
             File file = new File("reservations.txt");
 
             if (file.exists()) {
-                String temp = "";
                 ArrayList<String> temp = new ArrayList<String>();
                 FileInputStream fin = new FileInputStream(file);
 

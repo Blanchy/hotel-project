@@ -49,6 +49,36 @@ public class ManagerSession implements User {
 		return roomList;
 	}
 
+	@Override
+	public void loadReservations() {
+
+	}
+
+	@Override
+	public void viewInformation() {
+
+	}
+
+	@Override
+	public void saveReservations() {
+
+	}
+
+	@Override
+	public void addReservation() {
+
+	}
+
+	@Override
+	public String viewReservation() {
+		return null;
+	}
+
+	@Override
+	public void deleteReservation() {
+
+	}
+
 	/**
 	 * Sets the current date to the specified date
 	 * @param date date to be changed to.
